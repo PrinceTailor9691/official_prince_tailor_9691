@@ -3,37 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Official Full-Scale Portfolio of Prince Tailor - Software Developer & Tech Expert.">
+    <meta name="description" content="Prince Tailor - Official Software Developer Portfolio. 16-year-old expert in Web & App Development.">
     <meta name="google-site-verification" content="FbGTfoeLxtsC3dLa5HTxwb0eeRwUWinYO0rkNQayOx4" />
     <title>Prince Tailor | Software Developer</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Prince Tailor",
+      "alternateName": "official_prince_tailor_9691",
       "jobTitle": "Software Developer",
-      "url": "https://princetailor9691.github.io/official_prince_tailor_9691/"
+      "url": "https://princetailor9691.github.io/official_prince_tailor_9691/",
+      "description": "Expert 16-year-old developer specializing in high-end web animations and software architecture."
     }
     </script>
 
     <style>
-        :root {
-            --bg: #0b0f1a;
-            --card-bg: #141b2d;
-            --accent: #ff5733; /* Orange accent like your demo */
-            --teal: #00f2ea;   /* Teal accent from your demo */
-            --text: #ffffff;
-            --gray: #94a3b8;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        body { background-color: var(--bg); color: var(--text); line-height: 1.6; padding: 20px; }
+        body {
+            background: #050816;
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        .container { max-width: 1200px; margin: 0 auto; }
+        /* Animated Bubbles Background */
+        .circles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden; z-index: -1;
+        }
+        .circles li {
+            position: absolute; display: block; list-style: none; width: 20px; height: 20px;
+            background: rgba(37, 99, 235, 0.15); animation: animate 25s linear infinite; bottom: -150px;
+        }
+        .circles li:nth-child(1){ left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .circles li:nth-child(2){ left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .circles li:nth-child(3){ left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .circles li:nth-child(4){ left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .circles li:nth-child(5){ left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+
+        @keyframes animate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+        }
+
+        .container { max-width: 1100px; width: 100%; z-index: 1; animation: fadeIn 1.5s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Dashboard Header */
+        header {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 50px; border-radius: 30px;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .hero-info h2 { font-size: 1.2rem; color: #60a5fa; font-weight: 400; }
+        .glitch-name {
+            font-size: 3.5rem; font-weight: 800;
+            background: linear-gradient(90deg, #fff, #2563eb, #fff);
+            background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: gradMove 3s linear infinite; margin: 10px 0;
+        }
+        @keyframes gradMove { 0% { background-position: 0%; } 100% { background-position: 200%; } }
+
+        /* Typing Effect */
+        .typing-box { height: 30px; margin-bottom: 20px; }
+        .typing-text {
+            font-size: 1.4rem; color: #00f2ea; border-right: 3px solid #00f2ea;
+            white-space: nowrap; overflow: hidden; display: inline-block;
+            animation: typing 4s steps(30, end) infinite, blink .75s step-end infinite;
+        }
+        @keyframes typing { 0%, 90%, 100% { width: 0; } 30%, 80% { width: 100%; } }
+        @keyframes blink { 50% { border-color: transparent } }
+
+        .profile-logo {
+            width: 150px; height: 150px; border-radius: 50%;
+            border: 4px solid #2563eb; display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; font-weight: 800; color: #2563eb;
+            background: rgba(37, 99, 235, 0.1); box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Dashboard Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            padding: 30px; border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.5s; cursor: pointer;
+        }
+
+        .card:hover {
+            transform: perspective(1000px) rotateX(5deg) translateY(-10px);
+            background: rgba(37, 99, 235, 0.1);
+            border-color: #2563eb;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .card h3 { color: #2563eb; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
+        .card p { color: #cbd5e1; line-height: 1.6; }
+
+        /* Stats Style */
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
+        .stat-box { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; text-align: center; }
+        .stat-box span { display: block; font-size: 1.2rem; font-weight: 800; color: #00f2ea; }
+        .stat-box label { font-size: 0.7rem; color: #94a3b8; }
+
+        .btn-glow {
+            display: inline-block; padding: 15px 35px; background: #2563eb;
+            color: white; text-decoration: none; border-radius: 12px;
+            font-weight: 700; margin-top: 20px; transition: 0.3s;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; }
+            .grid { grid-template-columns: 1fr; }
+            .glitch-name { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="circles">
+        <li></li><li></li><li></li><li></li><li></li>
+    </ul>
+
+    <div class="container">
+        <header>
+            <div class="hero-info">
+                <h2>Hello.</h2>
+                <h1 class="glitch-name">Prince Tailor</h1>
+                <div class="typing-box">
+                    <div class="typing-text">Software Developer</div>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <a href="https://instagram.com/official_prince_tailor_9691" class="btn-glow">Connect Now</a>
+                </div>
+            </div>
+            <div class="profile-logo">PT</div>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h3>About me</h3>
+                <p>16-year-old visionary developer and Class 10th student. Creating high-end digital experiences with complex animations and AI-optimized code.</p>
+            </div>
+
+            <div class="card">
+                <h3>Performance Stats</h3>
+                <div class="stats">
+                    <div class="stat-box"><span>98%</span><label>Coding</label></div>
+                    <div class="stat-box"><span>20+</span><label>Projects</label></div>
+                    <div class="stat-box"><span>4.9</span><label>Rating</label></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Expertise</h3>
+                <p>UI/UX Motion Design, Full Stack Logic, and Cloud Deployment. Specialized in GitHub Workflows.</p>
+            </div>
+
+            <div class="card">
+                <h3>Digital Objective</h3>
+                <p>Building the next generation of AI-responsive software. Officially indexed by Google Search Console.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
 
         /* HEADER SECTION */
         header {
