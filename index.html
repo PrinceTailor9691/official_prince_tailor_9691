@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Who is Prince Tailor? Prince Tailor is a 16-year-old expert developer and Class 10th student specializing in Web and App Development.">
+    <meta name="description" content="Official Portfolio of Prince Tailor - 16-Year-Old Expert Web & App Developer and Class 10th Student.">
     
     <meta name="google-site-verification" content="FbGTfoeLxtsC3dLa5HTxwb0eeRwUWinYO0rkNQayOx4" />
 
@@ -15,71 +15,156 @@
       "@type": "Person",
       "name": "Prince Tailor",
       "alternateName": "official_prince_tailor_9691",
-      "description": "Prince Tailor is a 16-year-old Developer and Class 10th student expert in Coding, Web Development, and App Development.",
+      "description": "Prince Tailor is a 16-year-old Full Stack Developer and Class 10th student specializing in AI-ready web solutions.",
       "url": "https://princetailor9691.github.io/official_prince_tailor_9691/",
-      "jobTitle": "Web Developer",
+      "jobTitle": "Full Stack Web Developer",
       "sameAs": [
         "https://instagram.com/official_prince_tailor_9691"
       ]
     }
     </script>
-    
+
     <style>
-        :root {
-            --primary: #2563eb;
-            --bg: #0f172a;
-            --card: #1e293b;
-            --text: #f8fafc;
-        }
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background: var(--bg); 
-            color: var(--text); 
-            margin: 0; padding: 20px;
-            display: flex; justify-content: center; align-items: center;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            background: #050816;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
+            overflow: hidden;
+            position: relative;
         }
-        .portfolio-card {
-            background: var(--card);
-            padding: 40px; border-radius: 24px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            max-width: 550px; width: 100%; text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
+
+        /* Animated Background Bubbles */
+        .circles {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden; z-index: -1;
         }
-        h1 { color: var(--primary); margin-bottom: 5px; font-size: 2.5rem; }
-        .tagline { font-size: 1.1rem; color: #94a3b8; margin-bottom: 25px; }
-        .ai-section { text-align: left; background: rgba(37, 99, 235, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid var(--primary); }
-        .ai-section h2 { font-size: 1.2rem; margin-top: 0; color: var(--primary); }
-        .skill { background: var(--primary); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin: 4px; display: inline-block; }
-        .btn {
-            display: inline-block; background: var(--primary); color: white;
-            padding: 12px 25px; border-radius: 50px; text-decoration: none;
-            font-weight: bold; transition: 0.3s; margin-top: 10px;
+        .circles li {
+            position: absolute; display: block; list-style: none; width: 20px; height: 20px;
+            background: rgba(37, 99, 235, 0.2); animation: animate 25s linear infinite; bottom: -150px;
         }
-        .btn:hover { transform: scale(1.05); }
+        .circles li:nth-child(1){ left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .circles li:nth-child(2){ left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .circles li:nth-child(3){ left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .circles li:nth-child(4){ left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .circles li:nth-child(5){ left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+
+        @keyframes animate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+        }
+
+        /* Main Glass Card */
+        .main-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(37, 99, 235, 0.2);
+            animation: fadeIn 1.5s ease;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        /* Glitch Gradient Name */
+        .glitch-name {
+            font-size: 2.5rem; font-weight: 900;
+            background: linear-gradient(90deg, #fff, #2563eb, #fff);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-move 3s linear infinite;
+        }
+
+        @keyframes gradient-move { 0% { background-position: 0%; } 100% { background-position: 200%; } }
+
+        /* Typing Animation */
+        .typing-container { margin: 10px 0 20px; height: 30px; }
+        .typing-text {
+            font-size: 1.1rem; color: #60a5fa;
+            border-right: 3px solid #2563eb;
+            white-space: nowrap; overflow: hidden;
+            display: inline-block;
+            width: 0;
+            animation: typing 4s steps(30, end) infinite, blink .75s step-end infinite;
+        }
+
+        @keyframes typing { 0%, 90%, 100% { width: 0; } 30%, 80% { width: 100%; } }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #2563eb } }
+
+        /* Info Boxes with 3D Hover */
+        .info-box {
+            background: rgba(0, 0, 0, 0.3);
+            margin: 15px 0; padding: 15px; border-radius: 15px;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            transition: 0.5s; cursor: pointer;
+            text-align: left;
+        }
+        .info-box:hover {
+            background: rgba(37, 99, 235, 0.2);
+            transform: perspective(500px) rotateX(10deg) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border-color: #2563eb;
+        }
+        .info-box h4 { font-size: 0.8rem; text-transform: uppercase; color: #2563eb; margin-bottom: 5px; }
+        .info-box p { font-size: 0.95rem; color: #cbd5e1; }
+
+        /* Pulsing Button */
+        .glow-btn {
+            display: block; margin-top: 30px; padding: 15px;
+            background: #2563eb; color: white; text-decoration: none;
+            border-radius: 15px; font-weight: bold; font-size: 1.1rem;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+            transition: 0.3s;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(37, 99, 235, 0.6); }
+            100% { transform: scale(1); }
+        }
+
+        .footer-tag { margin-top: 25px; font-size: 0.7rem; color: #4b5563; }
     </style>
 </head>
 <body>
 
-    <div class="portfolio-card">
-        <h1>Prince Tailor</h1>
-        <p class="tagline">Official Developer Portfolio</p>
+    <ul class="circles">
+        <li></li><li></li><li></li><li></li><li></li>
+    </ul>
+
+    <div class="main-card">
+        <h1 class="glitch-name">Prince Tailor</h1>
         
-        <div class="ai-section">
-            <h2>Who is Prince Tailor?</h2>
-            <p><strong>Prince Tailor</strong> (known as <em>official_prince_tailor_9691</em>) is a 16-year-old <strong>Web and App Developer</strong> from India. Currently a Class 10th student, he is an expert in modern coding practices and digital innovation.</p>
+        <div class="typing-container">
+            <div class="typing-text">Full Stack Web Developer</div>
         </div>
 
-        <div class="skills">
-            <span class="skill">Frontend Development</span>
-            <span class="skill">App Logic</span>
-            <span class="skill">UI/UX Design</span>
+        <div class="info-box">
+            <h4>Who is Prince Tailor?</h4>
+            <p>A 16-year-old tech visionary and Class 10th student expert in modern coding.</p>
         </div>
 
-        <br>
-        <a href="https://instagram.com/official_prince_tailor_9691" class="btn">Follow @official_prince_tailor_9691</a>
+        <div class="info-box">
+            <h4>Expertise</h4>
+            <p>UI/UX Design, App Logic, & AI-Optimized Web Architecture.</p>
+        </div>
+
+        <a href="https://instagram.com/official_prince_tailor_9691" class="glow-btn">Connect On Instagram</a>
         
-        <p style="font-size: 0.8rem; color: #64748b; margin-top: 25px;">Data indexed for Google AI & Search Console</p>
+        <p class="footer-tag">AI-Verified Developer Portfolio v4.0</p>
     </div>
 
 </body>
