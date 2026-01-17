@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Official Portfolio of Prince Tailor - Software Developer." />
+    <meta name="description" content="Prince Tailor | System Architect & Software Engineer" />
     <meta name="google-site-verification" content="FbGTfoeLxtsC3dLa5HTxwb0eeRwUWinYO0rkNQayOx4" />
-    <title>Prince Tailor | Software Developer</title>
+    <title>PRINCE TAILOR | ARCHITECT</title>
 
     <script type="application/ld+json">
     {
@@ -13,172 +13,167 @@
       "@type": "Person",
       "name": "Prince Tailor",
       "jobTitle": "Software Developer",
-      "url": "https://princetailor9691.github.io/official_prince_tailor_9691/",
-      "sameAs": ["https://instagram.com/official_prince_tailor_9691"]
+      "url": "https://princetailor9691.github.io/official_prince_tailor_9691/"
     }
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;800&family=Space+Grotesk:wght@300;700&display=swap');
         
         :root {
-            --primary: #2563eb;
-            --accent: #60a5fa;
+            --primary: #0062ff;
             --bg: #000000;
             --surface: #0a0a0a;
-            --border: rgba(37, 99, 235, 0.3);
-            --neon: 0 0 25px rgba(37, 99, 235, 0.4);
+            --accent: #00f2ea;
+            --neon-glow: 0 0 40px rgba(0, 98, 255, 0.3);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
-        body { background: var(--bg); color: #ffffff; min-height: 200vh; overflow-x: hidden; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; scroll-behavior: smooth; }
-
-        /* MOVING GRID BACKGROUND */
-        body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 200%; height: 200%;
-            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px; z-index: -1; opacity: 0.1;
-            animation: gridMove 30s linear infinite;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); color: #ffffff; 
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden; scroll-behavior: smooth;
         }
-        @keyframes gridMove { from { transform: translateY(0); } to { transform: translateY(-500px); } }
 
-        .container { max-width: 1100px; width: 100%; }
-
-        /* INITIAL STATE FOR SCROLL ANIMATION */
-        .reveal { 
-            opacity: 0; 
-            transform: translateY(100px) scale(0.9); 
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); 
-            filter: blur(10px);
+        /* DIGITAL RAIN / GRID BACKGROUND */
+        .bg-layer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #001a33 0%, #000 100%);
+            z-index: -2;
         }
+        .grid-bg {
+            position: fixed; top: 0; left: 0; width: 200%; height: 200%;
+            background-image: linear-gradient(rgba(0, 98, 255, 0.05) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(0, 98, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px; transform: rotateX(60deg);
+            z-index: -1; animation: moveGrid 15s linear infinite;
+        }
+        @keyframes moveGrid { from { transform: rotateX(60deg) translateY(0); } to { transform: rotateX(60deg) translateY(40px); } }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* SCROLL REVEAL UTILITY */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* HEADER / HERO */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        .hero-label { font-family: 'JetBrains Mono', monospace; color: var(--accent); letter-spacing: 5px; font-size: 0.8rem; margin-bottom: 20px; }
+        .main-title { font-size: clamp(3rem, 10vw, 7rem); font-weight: 800; line-height: 0.85; text-transform: uppercase; letter-spacing: -4px; }
+        .blue-text { color: var(--primary); text-shadow: var(--neon-glow); }
+
+        /* HEX PROFILE */
+        .hex-container { position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: -1; opacity: 0.5; }
+        .hex { 
+            width: 300px; height: 340px; background: rgba(0, 98, 255, 0.1); 
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            border: 1px solid var(--primary); display: flex; align-items: center; justify-content: center;
+            font-size: 5rem; font-weight: 800; animation: float 6s infinite ease-in-out;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        /* EXPERIENCE GRID */
+        .section-title { font-size: 0.7rem; font-family: 'JetBrains Mono'; color: #444; letter-spacing: 10px; text-transform: uppercase; margin-bottom: 50px; }
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; margin-bottom: 100px; }
         
-        /* ACTIVE STATE (WHEN SCROLLED) */
-        .reveal.active { 
-            opacity: 1; 
-            transform: translateY(0) scale(1); 
-            filter: blur(0px);
+        .bento-item { 
+            background: var(--surface); border: 1px solid #1a1a1a; padding: 40px; 
+            transition: 0.5s; position: relative; overflow: hidden;
         }
+        .bento-item:hover { border-color: var(--primary); background: #0c0c0c; box-shadow: var(--neon-glow); transform: scale(1.02); }
+        .bento-item h2 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        .bento-item p { color: #888; line-height: 1.6; font-size: 1rem; }
 
-        /* HEADER SECTION */
-        header {
-            background: var(--surface); border: 1px solid var(--border); padding: 50px; border-radius: 4px;
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 100px;
-            box-shadow: var(--neon); position: relative;
+        .large { grid-column: span 8; }
+        .small { grid-column: span 4; }
+        .medium { grid-column: span 6; }
+
+        @media (max-width: 768px) { .large, .small, .medium { grid-column: span 12; } .hex-container { display: none; } }
+
+        /* BUTTONS */
+        .btn { 
+            padding: 20px 40px; background: var(--primary); color: white; text-decoration: none; 
+            font-weight: 800; text-transform: uppercase; display: inline-block; margin-top: 30px;
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); transition: 0.3s;
         }
-        header::before { content: "SYSTEM ONLINE"; position: absolute; top: 10px; right: 20px; font-size: 0.6rem; color: var(--accent); letter-spacing: 2px; }
+        .btn:hover { background: #fff; color: #000; transform: translateX(10px); }
 
-        .glitch-name { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; line-height: 0.9; }
-        .role-tag { color: var(--accent); margin: 15px 0; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
-        
-        .profile-hex { 
-            width: 140px; height: 140px; border: 1px solid var(--primary);
-            display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: 700;
-            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            color: var(--primary); box-shadow: var(--neon); animation: rotateHex 10s linear infinite;
-        }
-        @keyframes rotateHex { from { filter: hue-rotate(0deg); } to { filter: hue-rotate(45deg); } }
-
-        /* SCROLLABLE GRID */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
-        .card { 
-            background: var(--surface); padding: 40px; border: 1px solid rgba(255,255,255,0.05);
-            position: relative; overflow: hidden;
-        }
-        .card::after { 
-            content: ""; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; 
-            background: var(--primary); transition: 0.5s ease; 
-        }
-        .card:hover::after { width: 100%; }
-        .card:hover { border-color: var(--primary); background: #050505; box-shadow: var(--neon); transform: translateY(-10px); }
-
-        .card h3 { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; margin-bottom: 20px; letter-spacing: 4px; }
-        .card p { color: #888; line-height: 1.8; font-size: 1.1rem; transition: 0.3s; }
-        .card:hover p { color: #fff; }
-
-        /* BUTTON */
-        .cta-btn { 
-            display: inline-block; padding: 18px 40px; background: var(--primary); color: white; 
-            text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
-            margin-top: 25px; border: 1px solid transparent; transition: 0.4s;
-        }
-        .cta-btn:hover { background: transparent; border-color: var(--primary); box-shadow: var(--neon); transform: skewX(-10deg); }
-
-        /* FOOTER VERIFICATION */
+        /* FOOTER */
         footer { 
-            margin-top: 150px; padding: 60px 20px; text-align: center; border-top: 1px solid var(--border);
-            width: 100%; color: var(--accent); font-weight: 700; font-size: 0.8rem; letter-spacing: 3px; 
+            padding: 80px 0; border-top: 1px solid #1a1a1a; text-align: center;
+            font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #555;
         }
+        .ver-tag { color: var(--accent); font-weight: 800; font-size: 0.9rem; margin-top: 10px; }
 
-        @media (max-width: 850px) { .grid { grid-template-columns: 1fr; } header { flex-direction: column; text-align: center; gap: 30px; } }
     </style>
 </head>
 <body>
 
+    <div class="bg-layer"></div>
+    <div class="grid-bg"></div>
+
     <div class="container">
-        <header class="reveal">
-            <div class="hero-content">
-                <h1 class="glitch-name">PRINCE<br>TAILOR</h1>
-                <div class="role-tag">Full-Stack Architect</div>
-                <p style="color: #666; max-width: 500px; margin-bottom: 20px;">
-                    Next-generation software engineering. Clean logic, optimized performance, and powerful architectures.
-                </p>
-                <a href="https://instagram.com/official_prince_tailor_9691" target="_blank" class="cta-btn">Connect System</a>
-            </div>
-            <div class="profile-hex">PT</div>
-        </header>
+        <section class="hero reveal">
+            <div class="hero-label">PORTFOLIO.SYS_v2.0</div>
+            <h1 class="main-title">PRINCE<br><span class="blue-text">TAILOR</span></h1>
+            <p style="font-size: 1.2rem; color: #aaa; margin-top: 20px; max-width: 600px; font-family: 'JetBrains Mono';">
+                > CLASS 10TH STUDENT<br>
+                > FULL-STACK ARCHITECT<br>
+                > 16 YEARS OLD
+            </p>
+            <a href="https://instagram.com/official_prince_tailor_9691" class="btn">Connect Instagram</a>
 
-        <div class="grid">
-            <div class="card reveal">
-                <h3>01. Core Identity</h3>
-                <p>A 16-year-old developer from Class 10th. Dominating the digital space with advanced coding logic and software design.</p>
+            <div class="hex-container">
+                <div class="hex">PT</div>
             </div>
+        </section>
 
-            <div class="card reveal">
-                <h3>02. System Power</h3>
-                <div style="display:flex; gap:30px; margin-top:20px;">
-                    <div style="border-left:2px solid var(--primary); padding-left:15px;">
-                        <h4 style="font-size: 2rem;">15+</h4><span style="font-size:0.6rem; color:var(--accent);">DEPLOYMENTS</span>
-                    </div>
-                    <div style="border-left:2px solid var(--primary); padding-left:15px;">
-                        <h4 style="font-size: 2rem;">A+</h4><span style="font-size:0.6rem; color:var(--accent);">EFFICIENCY</span>
-                    </div>
-                </div>
+        <h3 class="section-title">Professional Architecture</h3>
+        <div class="bento-grid">
+            <div class="bento-item large reveal">
+                <h2>The Visionary Mindset</h2>
+                <p>Developing high-performance digital ecosystems. Not just a coder, but a solution provider who focuses on clean logic, software architecture, and futuristic UI/UX experiences.</p>
             </div>
-
-            <div class="card reveal">
-                <h3>03. Tech Stack</h3>
-                <p>Expertise in building scalable React environments, Node.js backends, and High-Performance UI frameworks.</p>
+            <div class="bento-item small reveal">
+                <h2>Efficiency</h2>
+                <h1 style="font-size: 4rem; color: var(--primary);">99%</h1>
+                <p>Code Uptime & Logic Accuracy</p>
             </div>
-
-            <div class="card reveal">
-                <h3>04. Future Vision</h3>
-                <p>Currently engineering AI-integrated systems and exploring the depths of automated software generation.</p>
+            <div class="bento-item small reveal">
+                <h2>Age: 16</h2>
+                <p>Proving that talent has no age limit. Balancing 10th-grade studies with professional-grade software development.</p>
+            </div>
+            <div class="bento-item large reveal">
+                <h2>Technical Stack</h2>
+                <p>Mastery in React, Advanced Node.js, and Cloud Deployment. Specializing in AI-integrated web solutions that redefine user interaction.</p>
+            </div>
+            <div class="bento-item medium reveal">
+                <h2>15+ Deployments</h2>
+                <p>Successfully delivered high-tier web applications and mobile frameworks for diverse digital environments.</p>
+            </div>
+            <div class="bento-item medium reveal">
+                <h2>Next Milestone</h2>
+                <p>Building automated AI portfolio builders and Decentralized Web 3.0 interfaces.</p>
             </div>
         </div>
 
-        <footer class="reveal">
-            VERIFIED BY GOOGLE INDEXING AND GOOGLE AI <br>
-            <div style="opacity:0.8; margin-top:10px; color:#fff; font-size: 0.9rem;">MICROSOFT | SCHOOL 365</div>
+        <footer>
+            DESIGNED BY PRINCE TAILOR © 2026<br>
+            <div class="ver-tag">VERIFIED BY GOOGLE AI | MICROSOFT CLOUD | SCHOOL 365</div>
         </footer>
     </div>
 
     <script>
-        const observerOptions = {
-            threshold: 0.15
-        };
-
+        // SCROLL REVEAL LOGIC
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                } else {
-                    // Optional: Remove 'active' to animate again when scrolling up
-                    // entry.target.classList.remove('active');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 
 </body>
