@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Official Portfolio of Prince Tailor - Software Developer." />
-    
     <meta name="google-site-verification" content="FbGTfoeLxtsC3dLa5HTxwb0eeRwUWinYO0rkNQayOx4" />
-    
     <title>Prince Tailor | Software Developer</title>
 
     <script type="application/ld+json">
@@ -16,9 +14,7 @@
       "name": "Prince Tailor",
       "jobTitle": "Software Developer",
       "url": "https://princetailor9691.github.io/official_prince_tailor_9691/",
-      "sameAs": [
-        "https://instagram.com/official_prince_tailor_9691"
-      ]
+      "sameAs": ["https://instagram.com/official_prince_tailor_9691"]
     }
     </script>
 
@@ -26,95 +22,114 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
         
         :root {
-            --primary: #2563eb;      /* Cobalt Blue */
-            --accent: #60a5fa;       /* Sky Blue */
-            --bg: #000000;           /* Absolute Black */
-            --surface: #0a0a0a;      /* Obsidian Surface */
+            --primary: #2563eb;
+            --accent: #60a5fa;
+            --bg: #000000;
+            --surface: #0a0a0a;
             --border: rgba(37, 99, 235, 0.3);
-            --neon-glow: 0 0 20px rgba(37, 99, 235, 0.4);
+            --neon-glow: 0 0 25px rgba(37, 99, 235, 0.5);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
         body { background: var(--bg); color: #ffffff; min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
 
-        /* Tactical Grid Background */
+        /* ANIMATED GRID BACKGROUND */
         body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            content: ""; position: fixed; top: 0; left: 0; width: 200%; height: 200%;
             background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px; z-index: -1; opacity: 0.1;
+            background-size: 60px 60px; z-index: -1; opacity: 0.15;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            from { transform: translateY(0); }
+            to { transform: translateY(-60px); }
         }
 
-        .container { max-width: 1100px; width: 100%; animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .container { max-width: 1100px; width: 100%; }
 
-        /* Powerful Hero Header */
+        /* ENTRANCE ANIMATION */
+        .reveal { opacity: 0; transform: translateY(30px); animation: revealIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        @keyframes revealIn { to { opacity: 1; transform: translateY(0); } }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
+        /* HEADER WITH PULSE */
         header {
             background: var(--surface); border: 1px solid var(--border); padding: 50px; border-radius: 2px;
             display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;
-            box-shadow: var(--neon-glow); position: relative; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative; overflow: hidden;
+            transition: border-color 0.5s ease;
         }
-        header::after { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary); }
+        header:hover { border-color: var(--accent); }
+        header::after { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary); animation: pulseGlow 2s infinite; }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 5px var(--primary); }
+            50% { box-shadow: 0 0 20px var(--primary); }
+            100% { box-shadow: 0 0 5px var(--primary); }
+        }
 
         .glitch-name { 
             font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; text-transform: uppercase; letter-spacing: -2px; line-height: 0.9;
+            transition: text-shadow 0.3s ease;
         }
+        .glitch-name:hover { text-shadow: var(--neon-glow); }
         
-        .role-tag { 
-            font-size: 1.1rem; color: var(--accent); margin: 15px 0; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .role-tag::before { content: ""; width: 20px; height: 2px; background: var(--accent); }
+        .role-tag { font-size: 1.1rem; color: var(--accent); margin: 15px 0; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; }
 
+        /* HEXAGON ANIMATION */
         .profile-hex { 
             width: 140px; height: 140px; background: var(--bg); border: 1px solid var(--primary);
             display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: 700;
             clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            box-shadow: var(--neon-glow); color: var(--primary);
+            color: var(--primary); animation: hexFloat 4s ease-in-out infinite;
+        }
+        @keyframes hexFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); box-shadow: var(--neon-glow); }
+            50% { transform: translateY(-10px) rotate(5deg); box-shadow: 0 0 40px var(--primary); }
         }
 
-        /* Information Cards */
+        /* CARD TRANSITIONS */
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
         .card { 
-            background: var(--surface); padding: 35px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+            background: var(--surface); padding: 35px; border: 1px solid rgba(255,255,255,0.05); 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); background: #0f172a; }
+        .card:hover { 
+            border-color: var(--primary); transform: translateY(-10px) scale(1.02); 
+            background: #0f172a; box-shadow: var(--neon-glow); 
+        }
         .card h3 { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; margin-bottom: 20px; letter-spacing: 4px; }
-        .card p { color: #a1a1aa; line-height: 1.7; font-size: 1.05rem; }
 
-        /* Stats Section */
-        .stats-row { display: flex; gap: 30px; margin-top: 20px; }
-        .stat-box { border-left: 2px solid var(--primary); padding-left: 15px; }
-        .stat-box h4 { font-size: 1.8rem; font-weight: 700; }
-        .stat-box span { font-size: 0.7rem; color: #71717a; text-transform: uppercase; }
+        /* STATS ANIMATION */
+        .stat-box h4 { font-size: 1.8rem; font-weight: 700; transition: color 0.3s; }
+        .card:hover .stat-box h4 { color: var(--accent); }
 
         .cta-btn { 
             display: inline-block; padding: 18px 40px; background: var(--primary); color: white; 
             text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
-            margin-top: 25px; transition: 0.3s;
+            margin-top: 25px; transition: 0.3s; position: relative; overflow: hidden;
         }
-        .cta-btn:hover { background: transparent; border: 1px solid var(--primary); box-shadow: var(--neon-glow); }
+        .cta-btn:hover { background: #1e40af; transform: skewX(-5deg); box-shadow: var(--neon-glow); }
 
-        /* Verified Footer */
         footer { 
             margin-top: 60px; padding: 30px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);
             width: 100%; color: var(--accent); font-weight: 700; font-size: 0.75rem; 
-            letter-spacing: 2px; text-transform: uppercase; 
+            letter-spacing: 2px; text-transform: uppercase;
         }
-        .verified-logos { opacity: 0.8; margin-top: 10px; color: #fff; font-size: 0.85rem; }
 
-        @media (max-width: 850px) { .grid { grid-template-columns: 1fr; } header { flex-direction: column; text-align: center; } .role-tag { justify-content: center; } }
+        @media (max-width: 850px) { .grid { grid-template-columns: 1fr; } header { flex-direction: column; text-align: center; } }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <header>
+        <header class="reveal">
             <div class="hero-content">
                 <h1 class="glitch-name">PRINCE<br>TAILOR</h1>
                 <div class="role-tag">Full-Stack Engineer</div>
                 <p style="color: #71717a; max-width: 500px; margin-bottom: 20px;">
                     Engineering high-performance digital systems and AI-driven architectures. 
-                    Merging clean logic with futuristic aesthetics.
                 </p>
                 <a href="https://instagram.com/official_prince_tailor_9691" target="_blank" class="cta-btn">Establish Connection</a>
             </div>
@@ -122,36 +137,36 @@
         </header>
 
         <div class="grid">
-            <div class="card">
+            <div class="card reveal delay-1">
                 <h3>Core Mission</h3>
                 <p>16-year-old developer redefining web standards. Currently engineering scalable software solutions while maintaining academic excellence in Grade 10.</p>
             </div>
 
-            <div class="card">
+            <div class="card reveal delay-1">
                 <h3>System Metrics</h3>
-                <div class="stats-row">
-                    <div class="stat-box"><h4>15+</h4><span>Deployments</span></div>
-                    <div class="stat-box"><h4>99%</h4><span>Uptime</span></div>
-                    <div class="stat-box"><h4>A+</h4><span>Logic</span></div>
+                <div style="display:flex; gap:30px; margin-top:20px;">
+                    <div style="border-left:2px solid var(--primary); padding-left:15px;" class="stat-box"><h4>15+</h4><span style="font-size:0.7rem; color:#71717a;">Deployments</span></div>
+                    <div style="border-left:2px solid var(--primary); padding-left:15px;" class="stat-box"><h4>99%</h4><span style="font-size:0.7rem; color:#71717a;">Uptime</span></div>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card reveal delay-2">
                 <h3>Technical Stack</h3>
-                <p>Advanced Proficiency in <strong>React, Node.js, and Cloud Architectures</strong>. Specializing in Motion Design and responsive UI systems.</p>
+                <p>Advanced Proficiency in <strong>React, Node.js, and Cloud Architectures</strong>.</p>
             </div>
 
-            <div class="card">
+            <div class="card reveal delay-2">
                 <h3>Next Objective</h3>
-                <p>Integrating Large Language Models (LLMs) into automated portfolio frameworks and exploring Decentralized Web technologies.</p>
+                <p>Integrating Large Language Models (LLMs) into automated portfolio frameworks.</p>
             </div>
         </div>
 
-        <footer>
+        <footer class="reveal delay-2">
             VERIFIED BY GOOGLE INDEXING AND GOOGLE AI <br>
-            <div class="verified-logos">MICROSOFT | SCHOOL 365</div>
+            <div style="opacity:0.8; margin-top:10px; color:#fff;">MICROSOFT | SCHOOL 365</div>
         </footer>
     </div>
 
 </body>
 </html>
+
