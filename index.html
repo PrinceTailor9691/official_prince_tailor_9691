@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Prince Tailor | Digital Singularity Architect & Full-Stack Engineer">
+    <meta name="description" content="Prince Tailor | Supernova Architect & Full-Stack Elite">
     <meta name="google-site-verification" content="FbGTfoeLxtsC3dLa5HTxwb0eeRwUWinYO0rkNQayOx4" />
-    <title>PRINCE TAILOR | DIGITAL ARCHITECT</title>
+    <title>PRINCE TAILOR | SUPERNOVA</title>
 
     <script type="application/ld+json">
     {
@@ -13,169 +13,159 @@
       "@type": "Person",
       "name": "Prince Tailor",
       "jobTitle": "Lead System Architect",
-      "url": "https://princetailor9691.github.io/official_prince_tailor_9691/",
-      "description": "16-year-old elite developer engineering the future of decentralized web and AI interfaces."
+      "url": "https://princetailor9691.github.io/official_prince_tailor_9691/"
     }
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=JetBrains+Mono:wght@300;500;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;600;900&display=swap');
         
         :root {
-            --primary: #0062ff;
-            --bg: #000000;
-            --accent: #00f2ea;
-            --card-glass: rgba(255, 255, 255, 0.03);
-            --neon-glow: 0 0 30px rgba(0, 98, 255, 0.4);
+            --bg: #030005;
+            --primary: #ff007a;
+            --secondary: #7000ff;
+            --accent: #00ffcc;
+            --glass: rgba(255, 255, 255, 0.03);
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         body { 
             background: var(--bg); color: #ffffff; 
-            font-family: 'JetBrains Mono', monospace;
-            overflow-x: hidden; scroll-behavior: smooth;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* MATRIX CANVAS BACKGROUND */
-        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.3; }
+        /* DYNAMIC MESH BACKGROUND */
+        #mesh-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(at 0% 0%, rgba(112, 0, 255, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(255, 0, 122, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(0, 255, 204, 0.05) 0px, transparent 50%);
+            z-index: -2;
+        }
 
-        /* CUSTOM NEON CURSOR */
+        /* NEON TRAIL CURSOR */
         #cursor {
-            position: fixed; width: 10px; height: 10px; background: var(--accent);
-            border-radius: 50%; pointer-events: none; z-index: 9999;
-            box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
-            transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: fixed; width: 25px; height: 25px; 
+            background: white; border-radius: 50%; pointer-events: none; z-index: 9999;
+            mix-blend-mode: difference; transition: transform 0.2s cubic-bezier(0.1, 1.2, 0.3, 1);
         }
 
         .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
 
-        /* HERO SECTION - KINETIC TYPOGRAPHY */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; }
-        .hero-tag { font-family: 'Syncopate', sans-serif; font-size: 0.7rem; color: var(--accent); letter-spacing: 8px; margin-bottom: 20px; text-transform: uppercase; }
+        /* HERO - CHROMATIC ABERRATION STYLE */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; text-align: left; }
         
-        .main-title { 
-            font-family: 'Syncopate', sans-serif; font-size: clamp(3rem, 12vw, 10rem); 
-            font-weight: 700; line-height: 0.9; text-transform: uppercase; letter-spacing: -2px;
+        .supernova-text {
+            font-family: 'Syncopate', sans-serif; font-size: clamp(3rem, 15vw, 12rem);
+            font-weight: 700; line-height: 0.8; letter-spacing: -5px;
+            background: var(--gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-size: 300%; animation: flow 5s infinite alternate;
+            filter: drop-shadow(0 0 30px rgba(112,0,255,0.3));
         }
-        .outline-text { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3); }
-        .filled-text { color: var(--primary); text-shadow: var(--neon-glow); animation: flicker 3s infinite; }
 
-        @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } 52% { opacity: 1; } }
+        @keyframes flow { 0% { background-position: 0%; } 100% { background-position: 100%; } }
 
-        /* BENTO BOXES - NEUMORPHIC GLASS */
-        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; padding-bottom: 100px; }
-        .box { 
-            background: var(--card-glass); border: 1px solid rgba(255,255,255,0.08); 
-            padding: 40px; border-radius: 2px; position: relative; 
-            backdrop-filter: blur(10px); transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        .sub-tag { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: var(--accent); margin-bottom: 20px; }
+
+        /* BENTO CARDS - GRADIENT BORDERS */
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 25px; margin-top: 50px; }
+        
+        .box {
+            background: var(--glass); border-radius: 30px; padding: 50px;
+            position: relative; backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+            overflow: hidden;
         }
-        .box:hover { 
-            background: rgba(0, 98, 255, 0.05); border-color: var(--primary);
-            box-shadow: inset 0 0 20px rgba(0, 98, 255, 0.2); transform: scale(1.02);
-        }
-        .box h3 { color: var(--accent); font-size: 0.8rem; margin-bottom: 20px; letter-spacing: 3px; }
-        .box h2 { font-size: 2rem; font-family: 'Syncopate'; margin-bottom: 15px; }
-        .box p { color: #888; line-height: 1.6; }
 
-        .w-8 { grid-column: span 8; } .w-4 { grid-column: span 4; } .w-12 { grid-column: span 12; }
+        .box::after {
+            content: ""; position: absolute; inset: 0;
+            border-radius: 30px; padding: 2px; 
+            background: var(--gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            opacity: 0; transition: 0.5s;
+        }
+
+        .box:hover { transform: scale(1.03) translateY(-10px); background: rgba(255, 255, 255, 0.05); }
+        .box:hover::after { opacity: 1; }
+
+        .box h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 15px; }
+        .box p { color: #aaa; font-size: 1.1rem; line-height: 1.6; }
+
+        .w-7 { grid-column: span 7; } .w-5 { grid-column: span 5; } .w-12 { grid-column: span 12; }
 
         /* HYPER BUTTON */
-        .magnetic-btn {
-            display: inline-block; padding: 25px 50px; border: 1px solid var(--primary);
-            background: transparent; color: white; text-transform: uppercase;
-            font-weight: 800; margin-top: 50px; position: relative;
-            overflow: hidden; transition: 0.4s; letter-spacing: 5px;
+        .glow-btn {
+            width: fit-content; margin-top: 40px; padding: 25px 60px;
+            background: white; color: black; font-weight: 900;
+            text-transform: uppercase; border-radius: 50px;
+            text-decoration: none; font-size: 1.2rem; transition: 0.4s;
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
         }
-        .magnetic-btn:hover { background: var(--primary); box-shadow: var(--neon-glow); letter-spacing: 10px; }
+        .glow-btn:hover { transform: scale(1.1) rotate(-2deg); background: var(--accent); box-shadow: 0 0 50px var(--accent); }
 
-        /* FOOTER HUD */
-        footer { padding: 50px 0; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; }
-        .hud-line { height: 1px; background: var(--primary); flex-grow: 1; margin: 0 20px; opacity: 0.3; }
-
-        @media (max-width: 900px) { .w-8, .w-4 { grid-column: span 12; } }
+        @media (max-width: 900px) { .w-7, .w-5 { grid-column: span 12; } }
     </style>
 </head>
 <body>
 
     <div id="cursor"></div>
-    <canvas id="bg-canvas"></canvas>
+    <div id="mesh-bg"></div>
 
     <div class="container">
         <section class="hero">
-            <div class="hero-tag">Core_System_Loaded // v8.0</div>
-            <h1 class="main-title outline-text">PRINCE</h1>
-            <h1 class="main-title filled-text">TAILOR</h1>
-            <p style="margin-top: 30px; font-size: 1.1rem; color: #555; max-width: 500px;">
-                I don't just write code. I architect digital experiences that defy conventional limits. 16 years old, building the future.
+            <div class="sub-tag">EVOLVING_DIGITAL_SPACE</div>
+            <h1 class="supernova-text">PRINCE</h1>
+            <h1 class="supernova-text">TAILOR</h1>
+            <p style="font-size: 1.4rem; color: #888; margin-top: 20px; font-weight: 300;">
+                Architecting the <span style="color:white; font-weight: 600;">Impossible</span>. 16-year-old Elite Developer shaping the next era of software.
             </p>
-            <a href="https://instagram.com/official_prince_tailor_9691" class="magnetic-btn">Initiate Connection</a>
+            <a href="https://instagram.com/official_prince_tailor_9691" class="glow-btn">Engage Project</a>
         </section>
 
         <div class="bento-grid">
-            <div class="box w-8">
-                <h3>[ CORE_PHILOSOPHY ]</h3>
-                <h2>Beyond Development.</h2>
-                <p>Engineering the intersection of raw performance and aesthetic precision. My architecture focuses on scalability, speed, and the "unseen" details that make a system elite.</p>
+            <div class="box w-7">
+                <h3 style="color: var(--primary); font-family: 'Syncopate'; font-size: 0.7rem; margin-bottom: 20px;">01 // THE_MINDSET</h3>
+                <h2>Radical Innovation.</h2>
+                <p>I don't follow trends; I build the tools that create them. Specialized in ultra-scalable system logic and visually aggressive front-end architecture.</p>
             </div>
-            <div class="box w-4">
-                <h3>[ LOGIC_EFFICIENCY ]</h3>
-                <h2 style="font-size: 4rem; color: var(--primary);">0.0ms</h2>
-                <p>Latency Target Execution</p>
+            <div class="box w-5">
+                <h3 style="color: var(--accent); font-family: 'Syncopate'; font-size: 0.7rem; margin-bottom: 20px;">02 // STATUS</h3>
+                <h2 style="font-size: 5rem; line-height: 1;">99%</h2>
+                <p>System Purity Score</p>
             </div>
-            <div class="box w-4">
-                <h3>[ STATUS ]</h3>
-                <p>Class 10th Intellect<br>Full-Stack Mastery<br>Singularity Researcher</p>
+            <div class="box w-5">
+                <h3 style="color: var(--secondary); font-family: 'Syncopate'; font-size: 0.7rem; margin-bottom: 20px;">03 // IDENTITY</h3>
+                <p style="font-size: 1.2rem; color: white;">CLASS 10TH<br>JAIPUR, INDIA<br>FULL-STACK ELITE</p>
             </div>
-            <div class="box w-8">
-                <h3>[ GLOBAL_IMPACT ]</h3>
-                <h2>15+ Systems Deployed.</h2>
-                <p>From AI-integrated web interfaces to high-speed software frameworks. Every project is a step towards a more intelligent web.</p>
+            <div class="box w-7">
+                <h3 style="color: var(--primary); font-family: 'Syncopate'; font-size: 0.7rem; margin-bottom: 20px;">04 // DEPLOYMENTS</h3>
+                <h2>Apex Results.</h2>
+                <p>15+ high-tier systems engineered for speed and visual dominance. Every pixel is calculated; every line of code is optimized.</p>
             </div>
-            <div class="box w-12" style="text-align: center;">
-                <h2>"Architecture is the art of organizing chaos."</h2>
+            <div class="box w-12" style="text-align: center; border: none; background: var(--gradient);">
+                <h2 style="color: black; font-size: 3rem;">"CREATING REALITY FROM CODE."</h2>
             </div>
         </div>
 
-        <footer>
-            <span>PRINCE_ARCHITECT_2026</span>
-            <div class="hud-line"></div>
-            <span style="color: var(--accent);">LATENCY: OPTIMAL | ENCRYPTION: ACTIVE</span>
+        <footer style="padding: 80px 0; text-align: center; font-family: 'Syncopate'; font-size: 0.7rem; opacity: 0.5;">
+            DESIGNED_BY_PRINCE_TAILOR // 2026 // ALL_SYSTEMS_GO
         </footer>
     </div>
 
     <script>
-        // MATRIX CANVAS EFFECT
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const alphabet = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        const fontSize = 16;
-        const columns = canvas.width/fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-
-        function drawMatrix() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#0062ff";
-            ctx.font = fontSize + "px monospace";
-            for(let i = 0; i < drops.length; i++) {
-                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                ctx.fillText(text, i*fontSize, drops[i]*fontSize);
-                if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
-            }
-        }
-        setInterval(drawMatrix, 30);
-
-        // CURSOR LOGIC
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // BOX 3D EFFECT
+        // 3D Box Tilt Logic
         document.querySelectorAll('.box').forEach(box => {
             box.addEventListener('mousemove', (e) => {
                 const rect = box.getBoundingClientRect();
@@ -183,9 +173,7 @@
                 const y = e.clientY - rect.top;
                 const xc = rect.width/2;
                 const yc = rect.height/2;
-                const dx = x - xc;
-                const dy = y - yc;
-                box.style.transform = `perspective(1000px) rotateX(${-dy/15}deg) rotateY(${dx/15}deg) scale(1.02)`;
+                box.style.transform = `perspective(1000px) rotateX(${(yc - y)/20}deg) rotateY(${(x - xc)/20}deg) scale(1.03)`;
             });
             box.addEventListener('mouseleave', () => {
                 box.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
