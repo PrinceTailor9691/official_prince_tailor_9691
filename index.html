@@ -3,172 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRINCE TAILOR | By Team Google</title>
+    <title>PRINCE | REDLINE</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;900&display=swap');
 
         :root {
-            --bg: #080808;
-            --acid: #ccff00; /* Toxic Neon Green */
-            --dark-gray: #111;
+            --bg: #000000;
+            --red: #ff0033; /* Pure Racing Red */
+            --white: #ffffff;
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         body { 
-            background: var(--bg); color: #fff; 
+            background: var(--bg); color: var(--white); 
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
 
-        /* CUSTOM TOXIC CURSOR */
+        /* COMPACT CURSOR */
         #cursor {
-            position: fixed; width: 12px; height: 12px; background: var(--acid);
+            position: fixed; width: 6px; height: 6px; background: var(--red);
             border-radius: 50%; pointer-events: none; z-index: 9999;
-            box-shadow: 0 0 15px var(--acid); transition: transform 0.1s;
-        }
-        #cursor-follower {
-            position: fixed; width: 40px; height: 40px; border: 1px solid var(--acid);
-            border-radius: 50%; pointer-events: none; z-index: 9998;
-            transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* LOGO & NAVIGATION */
+        /* GRID BACKGROUND */
+        .grid-overlay {
+            position: fixed; inset: 0;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 40px 40px; z-index: -1; opacity: 0.3;
+        }
+
         nav {
-            position: fixed; top: 0; width: 100%; padding: 40px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 100;
+            position: fixed; top: 0; width: 100%; padding: 20px 40px;
+            display: flex; justify-content: space-between; border-bottom: 1px solid var(--border);
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 1000;
         }
-        .nav-logo { font-family: 'Syncopate'; font-size: 1.2rem; color: var(--acid); }
+        .nav-logo { font-family: 'Archivo Black'; color: var(--red); font-size: 1.2rem; }
 
-        /* SECTION STYLING */
-        .v-section {
-            height: 100vh; width: 100%; display: flex;
-            align-items: center; justify-content: center; position: relative;
-        }
-
-        /* HERO REVEAL */
-        .hero-reveal {
-            font-size: clamp(3rem, 12vw, 10rem); font-weight: 900;
-            text-transform: uppercase; letter-spacing: -5px; line-height: 0.8;
-        }
-        .outline { -webkit-text-stroke: 1px #333; color: transparent; }
-
-        /* HORIZONTAL SCROLL AREA */
-        .h-wrap { overflow: hidden; background: var(--acid); color: #000; }
-        .h-container { display: flex; width: 400vw; height: 100vh; align-items: center; }
-        .h-panel { 
-            width: 100vw; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center;
-        }
-        .h-panel h2 { font-size: 15vw; letter-spacing: -10px; }
-
-        /* BIG TEXT BLOCK */
-        .impact-text {
-            padding: 100px 10%; font-size: clamp(1.5rem, 4vw, 4rem);
-            font-weight: 900; color: #333; text-align: left;
-        }
-        .impact-text span { color: #fff; transition: 0.5s; }
-        .impact-text span:hover { color: var(--acid); }
-
-        /* CONTACT LINK */
-        .final-cta {
-            font-size: 8vw; font-weight: 900; text-decoration: none;
-            color: var(--acid); border-bottom: 5px solid var(--acid);
+        /* ULTRA COMPACT SECTIONS */
+        .section {
+            padding: 80px 40px; border-bottom: 1px solid var(--border);
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
         }
 
-        /* BACKGROUND DECOR */
-        .noise {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.05; pointer-events: none; z-index: 50;
+        .hero { height: 70vh; display: flex; flex-direction: column; justify-content: center; }
+        
+        .title {
+            font-family: 'Archivo Black'; font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 0.9; text-transform: uppercase; letter-spacing: -2px;
         }
+
+        .red-text { color: var(--red); }
+
+        /* COMPACT INFO BLOCKS */
+        .info-card {
+            border: 1px solid var(--border); padding: 30px;
+            background: #050505; transition: 0.3s;
+        }
+        .info-card:hover { border-color: var(--red); }
+        .info-card h3 { font-size: 0.8rem; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+        .info-card p { font-size: 1.2rem; font-weight: 400; line-height: 1.2; }
+
+        /* HORIZONTAL STRIP (NIKE VIBE) */
+        .ticker {
+            background: var(--red); color: #000; padding: 15px 0;
+            overflow: hidden; white-space: nowrap; display: flex;
+        }
+        .ticker-wrap { display: flex; animation: tick 10s linear infinite; }
+        .ticker-wrap h2 { font-family: 'Archivo Black'; font-size: 2rem; margin-right: 50px; }
+
+        @keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* COMPACT CONTACT */
+        .cta-section { text-align: center; padding: 100px 0; }
+        .btn {
+            font-family: 'Archivo Black'; font-size: 3rem; text-decoration: none;
+            color: var(--white); transition: 0.3s;
+        }
+        .btn:hover { color: var(--red); -webkit-text-stroke: 1px var(--white); }
+
+        @media (max-width: 768px) { .section { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <div class="noise"></div>
     <div id="cursor"></div>
-    <div id="cursor-follower"></div>
+    <div class="grid-overlay"></div>
 
     <nav>
         <div class="nav-logo">P.TAILOR</div>
-        <div style="font-size: 0.8rem; font-family: 'Syncopate';">ARCH_v12.0</div>
+        <div style="font-weight: 900; font-size: 0.7rem;">SYSTEM_RE_SYNC_2026</div>
     </nav>
 
-    <section class="v-section">
-        <div class="hero-reveal">
-            <span class="outline">STEALTH</span><br>ARCHITECT
+    <section class="section hero">
+        <div>
+            <h1 class="title">LETHAL<br><span class="red-text">LOGIC</span></h1>
+        </div>
+        <div style="display: flex; align-items: flex-end;">
+            <p style="opacity: 0.6; font-size: 1rem; text-transform: uppercase;">16-Year-Old Full-Stack Engineer <br> Targeting Digital Supremacy.</p>
         </div>
     </section>
 
-    <section style="min-height: 50vh;">
-        <div class="impact-text">
-            NOT JUST A <span>10TH GRADE</span> STUDENT. <br>
-            A SYSTEM <span>ENGINEER</span> AT 16. <br>
-            DEFINING <span>FULL-STACK</span> SUPREMACY.
-        </div>
-    </section>
-
-    <div class="h-wrap">
-        <div class="h-container">
-            <div class="h-panel"><h2>PRECISION</h2></div>
-            <div class="h-panel"><h2>SPEED</h2></div>
-            <div class="h-panel" style="background: #000; color: var(--acid);"><h2>LOGIC</h2></div>
-            <div class="h-panel"><h2>DEPLOY</h2></div>
+    <div class="ticker">
+        <div class="ticker-wrap">
+            <h2>BUILD FAST</h2><h2>BREAK LIMITS</h2><h2>CODE PURE</h2><h2>ELITE ONLY</h2>
+            <h2>BUILD FAST</h2><h2>BREAK LIMITS</h2><h2>CODE PURE</h2><h2>ELITE ONLY</h2>
         </div>
     </div>
 
-    <section class="v-section">
-        <div style="text-align: center;">
-            <p style="margin-bottom: 20px; font-family: 'Syncopate'; opacity: 0.4;">READY FOR DEPLOYMENT?</p>
-            <a href="https://instagram.com/official_prince_tailor_9691" class="final-cta">INSTAGRAM</a>
+    <section class="section">
+        <div class="info-card">
+            <h3>STATUS</h3>
+            <p>Class 10th Student. Engineering systems that outperform veteran developers.</p>
+        </div>
+        <div class="info-card">
+            <h3>CAPABILITY</h3>
+            <p>React, Node.js, AI Integration, & High-Speed Performance Optimization.</p>
         </div>
     </section>
 
-    <footer style="padding: 50px; text-align: center; font-size: 0.7rem; opacity: 0.3;">
-        DESIGNED_BY_PRINCE_TAILOR // DIGITAL_PHANTOM_2026
+    <section class="cta-section">
+        <p style="opacity: 0.4; margin-bottom: 20px;">READY TO CONNECT?</p>
+        <a href="https://instagram.com/official_prince_tailor_9691" class="btn">INSTAGRAM →</a>
+    </section>
+
+    <footer style="padding: 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.6rem; opacity: 0.5;">
+        <span>© PRINCE TAILOR</span>
+        <span>JAIPUR / IN</span>
     </footer>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // CURSOR LOGIC
+        // CURSOR
         const cursor = document.getElementById('cursor');
-        const follower = document.getElementById('cursor-follower');
         document.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
-            gsap.to(follower, { x: e.clientX - 15, y: e.clientY - 15, duration: 0.3 });
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
 
-        // HERO TEXT ANIMATION
-        gsap.from(".hero-reveal", { 
-            opacity: 0, scale: 0.9, duration: 1.5, ease: "expo.out" 
-        });
-
-        // HORIZONTAL SCROLL
-        let sections = gsap.utils.toArray(".h-panel");
-        gsap.to(sections, {
-            xPercent: -100 * (sections.length - 1),
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".h-wrap",
-                pin: true,
-                scrub: 1,
-                end: () => "+=" + document.querySelector(".h-container").offsetWidth
-            }
-        });
-
-        // TEXT HIGHLIGHT ON SCROLL
-        gsap.from(".impact-text span", {
-            scrollTrigger: {
-                trigger: ".impact-text",
-                start: "top 70%",
-                scrub: true
-            },
-            opacity: 0.2,
-            stagger: 0.5
+        // REVEAL ANIMATION
+        gsap.from(".title", { y: 100, opacity: 0, duration: 1, ease: "power4.out" });
+        gsap.from(".info-card", {
+            scrollTrigger: { trigger: ".info-card", start: "top 90%" },
+            y: 50, opacity: 0, duration: 0.8, stagger: 0.2
         });
     </script>
 </body>
