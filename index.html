@@ -3,180 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Prince Tailor | Supernova Architect & Full-Stack Elite">
-    <meta name="google-site-verification" content="FbGTfoeLxtsC3dLa5HTxwb0eeRwUWinYO0rkNQayOx4" />
-    <title>PRINCE TAILOR | SUPERNOVA</title>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Prince Tailor",
-      "jobTitle": "Lead System Architect",
-      "url": "https://princetailor9691.github.io/official_prince_tailor_9691/"
-    }
-    </script>
-
+    <title>PRINCE TAILOR |</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;600;900&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Grotesk:wght@300;500;700&display=swap');
+
         :root {
-            --bg: #030005;
-            --primary: #ff007a;
-            --secondary: #7000ff;
-            --accent: #00ffcc;
-            --glass: rgba(255, 255, 255, 0.03);
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            --gold: #ffcc00;
+            --dark: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         body { 
-            background: var(--bg); color: #ffffff; 
-            font-family: 'Outfit', sans-serif;
+            background: var(--dark); color: #fff; 
+            font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
         }
 
-        /* DYNAMIC MESH BACKGROUND */
-        #mesh-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(at 0% 0%, rgba(112, 0, 255, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(255, 0, 122, 0.15) 0px, transparent 50%),
-                radial-gradient(at 50% 50%, rgba(0, 255, 204, 0.05) 0px, transparent 50%);
-            z-index: -2;
+        /* CUSTOM LIQUID CURSOR */
+        #cursor-dot { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; z-index: 10000; pointer-events: none; }
+        #cursor-outline { position: fixed; width: 40px; height: 40px; border: 1px solid var(--gold); border-radius: 50%; z-index: 9999; pointer-events: none; transition: transform 0.15s; }
+
+        /* FLOATING BACKGROUND ELEMENTS */
+        .bg-element {
+            position: fixed; border-radius: 50%; filter: blur(100px); z-index: -1; opacity: 0.2;
         }
 
-        /* NEON TRAIL CURSOR */
-        #cursor {
-            position: fixed; width: 25px; height: 25px; 
-            background: white; border-radius: 50%; pointer-events: none; z-index: 9999;
-            mix-blend-mode: difference; transition: transform 0.2s cubic-bezier(0.1, 1.2, 0.3, 1);
+        /* CINEMATIC HERO */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
         }
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+        .main-container { width: 90%; max-width: 1400px; position: relative; }
 
-        /* HERO - CHROMATIC ABERRATION STYLE */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; text-align: left; }
-        
-        .supernova-text {
-            font-family: 'Syncopate', sans-serif; font-size: clamp(3rem, 15vw, 12rem);
-            font-weight: 700; line-height: 0.8; letter-spacing: -5px;
-            background: var(--gradient);
+        .title-wrapper { position: relative; z-index: 10; }
+        .hero-title {
+            font-family: 'Syncopate', sans-serif; font-size: clamp(4rem, 18vw, 15rem);
+            line-height: 0.8; letter-spacing: -10px; text-transform: uppercase;
+            background: linear-gradient(to bottom, #fff 40%, var(--gold));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-size: 300%; animation: flow 5s infinite alternate;
-            filter: drop-shadow(0 0 30px rgba(112,0,255,0.3));
         }
 
-        @keyframes flow { 0% { background-position: 0%; } 100% { background-position: 100%; } }
-
-        .sub-tag { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: var(--accent); margin-bottom: 20px; }
-
-        /* BENTO CARDS - GRADIENT BORDERS */
-        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 25px; margin-top: 50px; }
-        
-        .box {
-            background: var(--glass); border-radius: 30px; padding: 50px;
-            position: relative; backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-            overflow: hidden;
+        .floating-label {
+            position: absolute; top: -20px; right: 10%;
+            font-size: 0.8rem; letter-spacing: 5px; color: var(--gold);
+            font-family: 'Syncopate'; text-transform: uppercase;
         }
 
-        .box::after {
-            content: ""; position: absolute; inset: 0;
-            border-radius: 30px; padding: 2px; 
-            background: var(--gradient);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude;
-            opacity: 0; transition: 0.5s;
+        /* INTERACTIVE CONTENT SECTIONS (NO BOXES) */
+        .content-section {
+            padding: 150px 0; display: flex; flex-direction: column; gap: 100px;
         }
 
-        .box:hover { transform: scale(1.03) translateY(-10px); background: rgba(255, 255, 255, 0.05); }
-        .box:hover::after { opacity: 1; }
-
-        .box h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 15px; }
-        .box p { color: #aaa; font-size: 1.1rem; line-height: 1.6; }
-
-        .w-7 { grid-column: span 7; } .w-5 { grid-column: span 5; } .w-12 { grid-column: span 12; }
-
-        /* HYPER BUTTON */
-        .glow-btn {
-            width: fit-content; margin-top: 40px; padding: 25px 60px;
-            background: white; color: black; font-weight: 900;
-            text-transform: uppercase; border-radius: 50px;
-            text-decoration: none; font-size: 1.2rem; transition: 0.4s;
-            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
+        .floating-info {
+            max-width: 600px; position: relative; padding-left: 20px;
+            border-left: 1px solid var(--gold);
         }
-        .glow-btn:hover { transform: scale(1.1) rotate(-2deg); background: var(--accent); box-shadow: 0 0 50px var(--accent); }
 
-        @media (max-width: 900px) { .w-7, .w-5 { grid-column: span 12; } }
+        .floating-info h2 { font-size: 4rem; font-family: 'Syncopate'; margin-bottom: 20px; }
+        .floating-info p { font-size: 1.5rem; color: #888; font-weight: 300; line-height: 1.2; }
+
+        .tech-stack {
+            display: flex; flex-wrap: wrap; gap: 20px; font-family: 'Syncopate';
+        }
+        .tech-tag {
+            font-size: 3rem; opacity: 0.1; transition: 0.5s; cursor: pointer;
+        }
+        .tech-tag:hover { opacity: 1; color: var(--gold); transform: skewX(-10deg); }
+
+        /* THE ACTION BUTTON */
+        .action-link {
+            font-size: 2rem; color: #fff; text-decoration: none;
+            display: flex; align-items: center; gap: 20px;
+            margin-top: 50px; font-weight: 700;
+        }
+        .arrow-circle {
+            width: 80px; height: 80px; border: 1px solid #fff;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            transition: 0.5s;
+        }
+        .action-link:hover .arrow-circle { background: var(--gold); border-color: var(--gold); transform: rotate(45deg); }
+
+        /* SCROLL PROGRESS */
+        .progress-bar {
+            position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); width: 0%; z-index: 10001;
+        }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
-    <div id="mesh-bg"></div>
+    <div class="progress-bar" id="progress"></div>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <div class="bg-element" style="width: 600px; height: 600px; background: #ff0055; top: -200px; left: -200px;"></div>
+    <div class="bg-element" style="width: 500px; height: 500px; background: var(--gold); bottom: -100px; right: -100px;"></div>
 
     <div class="container">
         <section class="hero">
-            <div class="sub-tag">EVOLVING_DIGITAL_SPACE</div>
-            <h1 class="supernova-text">PRINCE</h1>
-            <h1 class="supernova-text">TAILOR</h1>
-            <p style="font-size: 1.4rem; color: #888; margin-top: 20px; font-weight: 300;">
-                Architecting the <span style="color:white; font-weight: 600;">Impossible</span>. 16-year-old Elite Developer shaping the next era of software.
-            </p>
-            <a href="https://instagram.com/official_prince_tailor_9691" class="glow-btn">Engage Project</a>
+            <div class="main-container">
+                <div class="floating-label">SYSTEM_v10.0</div>
+                <div class="title-wrapper">
+                    <h1 class="hero-title">PRINCE</h1>
+                    <h1 class="hero-title" style="margin-left: 10%;">TAILOR</h1>
+                </div>
+            </div>
         </section>
 
-        <div class="bento-grid">
-            <div class="box w-7">
-                <h3 style="color: var(--primary); font-family: 'Syncopate'; font-size: 0.7rem; margin-bottom: 20px;">01 // THE_MINDSET</h3>
-                <h2>Radical Innovation.</h2>
-                <p>I don't follow trends; I build the tools that create them. Specialized in ultra-scalable system logic and visually aggressive front-end architecture.</p>
+        <section class="main-container content-section">
+            <div class="floating-info" id="about">
+                <h2>01.</h2>
+                <p>Not a developer. A digital architect. Breaking 10th-grade norms to build high-intelligence systems that solve tomorrow's chaos today.</p>
             </div>
-            <div class="box w-5">
-                <h3 style="color: var(--accent); font-family: 'Syncopate'; font-size: 0.7rem; margin-bottom: 20px;">02 // STATUS</h3>
-                <h2 style="font-size: 5rem; line-height: 1;">99%</h2>
-                <p>System Purity Score</p>
-            </div>
-            <div class="box w-5">
-                <h3 style="color: var(--secondary); font-family: 'Syncopate'; font-size: 0.7rem; margin-bottom: 20px;">03 // IDENTITY</h3>
-                <p style="font-size: 1.2rem; color: white;">CLASS 10TH<br>JAIPUR, INDIA<br>FULL-STACK ELITE</p>
-            </div>
-            <div class="box w-7">
-                <h3 style="color: var(--primary); font-family: 'Syncopate'; font-size: 0.7rem; margin-bottom: 20px;">04 // DEPLOYMENTS</h3>
-                <h2>Apex Results.</h2>
-                <p>15+ high-tier systems engineered for speed and visual dominance. Every pixel is calculated; every line of code is optimized.</p>
-            </div>
-            <div class="box w-12" style="text-align: center; border: none; background: var(--gradient);">
-                <h2 style="color: black; font-size: 3rem;">"CREATING REALITY FROM CODE."</h2>
-            </div>
-        </div>
 
-        <footer style="padding: 80px 0; text-align: center; font-family: 'Syncopate'; font-size: 0.7rem; opacity: 0.5;">
-            DESIGNED_BY_PRINCE_TAILOR // 2026 // ALL_SYSTEMS_GO
+            <div class="tech-stack">
+                <span class="tech-tag">REACT</span>
+                <span class="tech-tag">NODE.JS</span>
+                <span class="tech-tag">GSAP</span>
+                <span class="tech-tag">AI_LOGIC</span>
+                <span class="tech-tag">GITHUB</span>
+            </div>
+
+            <div class="floating-info" style="align-self: flex-end; text-align: right; border-left: none; border-right: 1px solid var(--gold); padding-right: 20px;">
+                <h2>16.</h2>
+                <p>The age is just a data point. The performance is the reality. 15+ complex environments deployed and verified.</p>
+            </div>
+
+            <a href="https://instagram.com/official_prince_tailor_9691" class="action-link">
+                CONNECT TO SINGULARITY
+                <div class="arrow-circle">→</div>
+            </a>
+        </section>
+
+        <footer style="padding: 100px; text-align: center; border-top: 1px solid var(--glass);">
+            <p style="opacity: 0.3; letter-spacing: 10px;">PRINCE TAILOR // 2026 // JAJOD SIKAR,RAJASTHAN 332318</p>
         </footer>
     </div>
 
     <script>
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        // CURSOR MOVEMENT
+        const dot = document.getElementById('cursor-dot');
+        const outline = document.getElementById('cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                outline.style.left = (e.clientX - 16) + 'px';
+                outline.style.top = (e.clientY - 16) + 'px';
+            }, 50);
         });
 
-        // 3D Box Tilt Logic
-        document.querySelectorAll('.box').forEach(box => {
-            box.addEventListener('mousemove', (e) => {
-                const rect = box.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const xc = rect.width/2;
-                const yc = rect.height/2;
-                box.style.transform = `perspective(1000px) rotateX(${(yc - y)/20}deg) rotateY(${(x - xc)/20}deg) scale(1.03)`;
-            });
-            box.addEventListener('mouseleave', () => {
-                box.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        // SCROLL PROGRESS
+        window.onscroll = () => {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress").style.width = scrolled + "%";
+        };
+
+        // PARALLAX EFFECT FOR TEXT
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.05;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.05;
+            gsap.to(".hero-title", {
+                x: moveX,
+                y: moveY,
+                duration: 1,
+                ease: "power2.out"
             });
         });
     </script>
