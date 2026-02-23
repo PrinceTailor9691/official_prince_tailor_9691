@@ -3,89 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRINCE | REDLINE</title>
+    <meta name="google-site-verification" content="CzC0nJ2gcJTKm_fs-Rts94EWBperq31r1iIJViD39eY" />
+    <title>PRINCE | REDLINE EXECUTOR</title>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;900&display=swap');
-<meta name="google-site-verification" content="CzC0nJ2gcJTKm_fs-Rts94EWBperq31r1iIJViD39eY" />
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;900&display=swap');
+
         :root {
-            --bg: #000000;
-            --red: #ff0033; /* Pure Racing Red */
+            --bg: #050505;
+            --red: #ff0033; 
+            --red-glow: rgba(255, 0, 51, 0.4);
             --white: #ffffff;
-            --border: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        
         body { 
-            background: var(--bg); color: var(--white); 
+            background: var(--bg); 
+            color: var(--white); 
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            letter-spacing: -0.02em;
         }
 
-        /* COMPACT CURSOR */
+        /* SCANLINE EFFECT */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9999;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* CUSTOM CURSOR */
         #cursor {
-            position: fixed; width: 6px; height: 6px; background: var(--red);
-            border-radius: 50%; pointer-events: none; z-index: 9999;
+            position: fixed; width: 8px; height: 8px; background: var(--red);
+            border-radius: 50%; pointer-events: none; z-index: 10000;
+            box-shadow: 0 0 15px var(--red), 0 0 30px var(--red);
+            transition: transform 0.1s ease;
         }
 
-        /* GRID BACKGROUND */
         .grid-overlay {
             position: fixed; inset: 0;
-            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 40px 40px; z-index: -1; opacity: 0.3;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px), 
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px; z-index: -1;
         }
 
         nav {
-            position: fixed; top: 0; width: 100%; padding: 20px 40px;
-            display: flex; justify-content: space-between; border-bottom: 1px solid var(--border);
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 1000;
-        }
-        .nav-logo { font-family: 'Archivo Black'; color: var(--red); font-size: 1.2rem; }
-
-        /* ULTRA COMPACT SECTIONS */
-        .section {
-            padding: 80px 40px; border-bottom: 1px solid var(--border);
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            position: fixed; top: 0; width: 100%; padding: 25px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(20px); z-index: 1000;
         }
 
-        .hero { height: 70vh; display: flex; flex-direction: column; justify-content: center; }
+        .nav-logo { 
+            font-family: 'Archivo Black'; 
+            color: var(--red); 
+            font-size: 1.4rem; 
+            text-shadow: 0 0 10px var(--red-glow);
+        }
+
+        .status-tag {
+            font-family: 'Space Mono';
+            font-size: 0.65rem;
+            background: rgba(255, 0, 51, 0.1);
+            padding: 5px 12px;
+            border: 1px solid var(--red);
+            border-radius: 20px;
+            color: var(--red);
+        }
+
+        /* HERO SECTION */
+        .hero { 
+            height: 90vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding: 0 50px;
+        }
         
         .title {
-            font-family: 'Archivo Black'; font-size: clamp(3rem, 10vw, 7rem);
-            line-height: 0.9; text-transform: uppercase; letter-spacing: -2px;
+            font-family: 'Archivo Black'; 
+            font-size: clamp(4rem, 15vw, 10rem);
+            line-height: 0.85; 
+            text-transform: uppercase; 
+            letter-spacing: -5px;
         }
 
-        .red-text { color: var(--red); }
+        .glitch-text {
+            position: relative;
+            color: var(--white);
+        }
 
-        /* COMPACT INFO BLOCKS */
+        .red-text { 
+            color: var(--red); 
+            text-shadow: 5px 5px 0px rgba(255, 0, 51, 0.2);
+        }
+
+        /* INFO CARDS */
+        .section {
+            padding: 100px 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
         .info-card {
-            border: 1px solid var(--border); padding: 30px;
-            background: #050505; transition: 0.3s;
+            border: 1px solid var(--border); 
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
         }
-        .info-card:hover { border-color: var(--red); }
-        .info-card h3 { font-size: 0.8rem; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
-        .info-card p { font-size: 1.2rem; font-weight: 400; line-height: 1.2; }
 
-        /* HORIZONTAL STRIP (NIKE VIBE) */
-        .ticker {
-            background: var(--red); color: #000; padding: 15px 0;
-            overflow: hidden; white-space: nowrap; display: flex;
+        .info-card::before {
+            content: ""; position: absolute; top: 0; left: 0;
+            width: 2px; height: 0; background: var(--red);
+            transition: 0.5s;
         }
-        .ticker-wrap { display: flex; animation: tick 10s linear infinite; }
-        .ticker-wrap h2 { font-family: 'Archivo Black'; font-size: 2rem; margin-right: 50px; }
+
+        .info-card:hover::before { height: 100%; }
+
+        .info-card h3 { 
+            font-family: 'Space Mono';
+            font-size: 0.7rem; 
+            color: var(--red); 
+            margin-bottom: 20px; 
+            letter-spacing: 2px;
+        }
+
+        .info-card p { font-size: 1.4rem; font-weight: 400; line-height: 1.3; }
+
+        /* TICKER */
+        .ticker {
+            background: var(--red); color: #000; padding: 20px 0;
+            transform: rotate(-1deg) scale(1.05);
+            margin: 50px 0;
+        }
+        .ticker-wrap { display: flex; animation: tick 15s linear infinite; }
+        .ticker-wrap h2 { font-family: 'Archivo Black'; font-size: 2.5rem; margin-right: 60px; }
 
         @keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* COMPACT CONTACT */
-        .cta-section { text-align: center; padding: 100px 0; }
+        /* CTA */
+        .cta-section { text-align: center; padding: 150px 0; }
         .btn {
-            font-family: 'Archivo Black'; font-size: 3rem; text-decoration: none;
-            color: var(--white); transition: 0.3s;
+            font-family: 'Archivo Black'; font-size: clamp(2rem, 8vw, 5rem); 
+            text-decoration: none; color: var(--white);
+            transition: 0.4s; position: relative;
         }
-        .btn:hover { color: var(--red); -webkit-text-stroke: 1px var(--white); }
+        .btn:hover {
+            color: var(--red);
+            -webkit-text-stroke: 2px var(--white);
+            text-shadow: 10px 10px 0px var(--red-glow);
+        }
 
-        @media (max-width: 768px) { .section { grid-template-columns: 1fr; } }
+        footer {
+            padding: 50px;
+            border-top: 1px solid var(--border);
+            font-family: 'Space Mono';
+            font-size: 0.7rem;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            .hero { padding: 20px; }
+            .section { padding: 50px 20px; }
+        }
     </style>
 </head>
 <body>
@@ -95,15 +194,20 @@
 
     <nav>
         <div class="nav-logo">P.TAILOR</div>
-        <div style="font-weight: 900; font-size: 0.7rem;">SYSTEM_RE_SYNC_2026</div>
+        <div class="status-tag">SYSTEM_RE_SYNC_2026 // ONLINE</div>
     </nav>
 
-    <section class="section hero">
-        <div>
-            <h1 class="title">LETHAL<br><span class="red-text">LOGIC</span></h1>
-        </div>
-        <div style="display: flex; align-items: flex-end;">
-            <p style="opacity: 0.6; font-size: 1rem; text-transform: uppercase;">16-Year-Old Full-Stack Engineer <br> Targeting Digital Supremacy.</p>
+    <section class="hero">
+        <h1 class="title">
+            <span class="glitch-text">LETHAL</span><br>
+            <span class="red-text">LOGIC</span>
+        </h1>
+        <div style="margin-top: 30px; max-width: 500px;">
+            <p style="opacity: 0.5; font-family: 'Space Mono'; font-size: 0.9rem; text-transform: uppercase; line-height: 1.6;">
+                > 16-Year-Old Full-Stack Engineer<br>
+                > Location: Jaipur, IN<br>
+                > Mission: Digital Supremacy
+            </p>
         </div>
     </section>
 
@@ -116,38 +220,64 @@
 
     <section class="section">
         <div class="info-card">
-            <h3>STATUS</h3>
-            <p>Class 10th Student. Engineering systems that outperform veteran developers.</p>
+            <h3>01 // STATUS</h3>
+            <p>Class 10th Student. Engineering systems that outperform veteran developers while managing board exams.</p>
         </div>
         <div class="info-card">
-            <h3>CAPABILITY</h3>
+            <h3>02 // TECH_STACK</h3>
             <p>React, Node.js, AI Integration, & High-Speed Performance Optimization.</p>
+        </div>
+        <div class="info-card">
+            <h3>03 // PHILOSOPHY</h3>
+            <p>If the code isn't beautiful, it's just noise. Every pixel must have a purpose.</p>
         </div>
     </section>
 
     <section class="cta-section">
-        <p style="opacity: 0.4; margin-bottom: 20px;">READY TO CONNECT?</p>
+        <p style="font-family: 'Space Mono'; color: var(--red); margin-bottom: 20px;">[ INITIALIZE_CONTACT ]</p>
         <a href="https://instagram.com/official_prince_tailor_9691" class="btn">INSTAGRAM →</a>
     </section>
 
-    <footer style="padding: 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.6rem; opacity: 0.5;">
-        <span>© PRINCE TAILOR</span>
-        <span>JAIPUR / IN</span>
+    <footer>
+        <span>© PRINCE TAILOR [2026]</span>
+        <span>LAT: 26.9124 | LONG: 75.7873</span>
     </footer>
 
     <script>
-        // CURSOR
+        // ADVANCED CURSOR
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            gsap.to(cursor, {
+                x: e.clientX - 4,
+                y: e.clientY - 4,
+                duration: 0.1
+            });
         });
 
-        // REVEAL ANIMATION
-        gsap.from(".title", { y: 100, opacity: 0, duration: 1, ease: "power4.out" });
+        // ANIMATIONS
+        gsap.from(".title", { 
+            y: 100, opacity: 0, duration: 1.5, ease: "expo.out" 
+        });
+
         gsap.from(".info-card", {
-            scrollTrigger: { trigger: ".info-card", start: "top 90%" },
-            y: 50, opacity: 0, duration: 0.8, stagger: 0.2
+            scrollTrigger: {
+                trigger: ".info-card",
+                start: "top 85%"
+            },
+            y: 100,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 1,
+            ease: "power4.out"
+        });
+
+        // HOVER EFFECTS FOR BUTTONS
+        const btn = document.querySelector('.btn');
+        btn.addEventListener('mouseenter', () => {
+            gsap.to(cursor, { scale: 10, backgroundColor: "transparent", border: "1px solid #ff0033" });
+        });
+        btn.addEventListener('mouseleave', () => {
+            gsap.to(cursor, { scale: 1, backgroundColor: "#ff0033", border: "none" });
         });
     </script>
 </body>
