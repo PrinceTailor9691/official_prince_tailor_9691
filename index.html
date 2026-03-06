@@ -4,20 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="CzC0nJ2gcJTKm_fs-Rts94EWBperq31r1iIJViD39eY" />
-    <title>PRINCE TAILOR | ELITE DEV</title>
+    <title>PRINCE TAILOR | THE ELITE ARCHITECT</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@300;900&family=Bebas+Neue&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Poppins:wght@300;900&family=Bebas+Neue&display=swap');
 
         :root {
-            --bg: #000000;
+            --bg: #030303;
             --accent: #ff003c;
             --text: #ffffff;
             --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.08);
+            
+            /* Brand Colors for Glow */
+            --google-glow: rgba(66, 133, 244, 0.4);
+            --ms-glow: rgba(0, 164, 239, 0.4);
+            --amazon-glow: rgba(255, 153, 0, 0.4);
+            --jio-glow: rgba(15, 61, 145, 0.4);
+            --apple-glow: rgba(255, 255, 255, 0.3);
+            --gemini-glow: rgba(138, 43, 226, 0.4);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
@@ -25,35 +33,39 @@
         body { 
             background: var(--bg); 
             color: var(--text); 
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
         }
 
-        /* CUSTOM CURSOR */
+        /* PREMIUM CURSOR */
         #cursor {
-            position: fixed; width: 15px; height: 15px; background: var(--accent);
+            position: fixed; width: 12px; height: 12px; background: #fff;
             border-radius: 50%; pointer-events: none; z-index: 10000;
-            box-shadow: 0 0 25px var(--accent); mix-blend-mode: difference;
+            mix-blend-mode: difference; transition: transform 0.2s ease;
         }
 
         /* FULL SCREEN SECTIONS */
         section {
-            height: 100vh;
+            min-height: 100vh;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 0 10%;
+            padding: 100px 10%;
             position: relative;
-            overflow: hidden;
         }
 
-        /* BACKGROUND ELEMENTS */
-        .bg-text {
-            position: absolute; font-size: 25vw; font-weight: 900;
-            color: rgba(255, 255, 255, 0.02); z-index: -1; white-space: nowrap;
+        /* TEXT STROKE EFFECT */
+        .outline-text {
             font-family: 'Bebas Neue';
+            font-size: 20vw;
+            line-height: 0.8;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+            color: transparent;
+            position: absolute;
+            z-index: -1;
+            white-space: nowrap;
         }
 
         /* HERO SECTION */
@@ -62,79 +74,85 @@
             font-size: clamp(5rem, 15vw, 12rem);
             line-height: 0.8;
             text-align: center;
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        .accent-text { color: var(--accent); }
 
         .tagline {
             font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 10px;
             margin-bottom: 20px; color: var(--accent);
         }
 
-        /* BRAND SECTION - THE "GOOD" PART */
+        /* BRAND GRID - HIGH TECH LOGOS */
         .brand-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px;
+            margin-top: 50px;
         }
 
-        .brand-item {
+        .brand-card {
             background: var(--glass);
             border: 1px solid var(--border);
-            height: 200px;
+            height: 180px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 15px;
+            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
+            overflow: hidden;
         }
 
-        .brand-item:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            transform: scale(1.05);
+        .brand-card img {
+            max-width: 60%;
+            max-height: 50%;
+            filter: grayscale(100%) brightness(150%);
+            transition: 0.5s ease;
         }
 
-        .brand-item h2 {
-            font-family: 'Bebas Neue';
-            font-size: 3.5rem;
-            letter-spacing: 2px;
-        }
+        /* HOVER EFFECTS - LOGO GLOW */
+        .brand-card:hover { transform: translateY(-10px); border-color: transparent; }
+        .brand-card:hover img { filter: grayscale(0%) brightness(100%); transform: scale(1.1); }
 
-        .brand-item p {
-            font-family: 'Syncopate'; font-size: 0.6rem; opacity: 0.6;
-        }
+        /* Custom Glows */
+        .brand-card.google:hover { box-shadow: 0 15px 40px var(--google-glow); }
+        .brand-card.microsoft:hover { box-shadow: 0 15px 40px var(--ms-glow); }
+        .brand-card.amazon:hover { box-shadow: 0 15px 40px var(--amazon-glow); }
+        .brand-card.jio:hover { box-shadow: 0 15px 40px var(--jio-glow); }
+        .brand-card.apple:hover { box-shadow: 0 15px 40px var(--apple-glow); }
+        .brand-card.gemini:hover { box-shadow: 0 15px 40px var(--gemini-glow); }
 
-        /* BIO SECTION */
-        .bio-content { text-align: left; width: 100%; max-width: 800px; }
-        .bio-row {
-            border-bottom: 1px solid var(--border);
-            padding: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .bio-label { font-family: 'Syncopate'; font-size: 0.8rem; color: var(--accent); }
-        .bio-val { font-size: 2rem; font-weight: 900; }
+        /* IDENTITY DATA */
+        .data-table { width: 100%; max-width: 900px; border-collapse: collapse; margin-top: 50px; }
+        .data-row { border-bottom: 1px solid var(--border); }
+        .data-cell { padding: 25px 0; font-size: 1.2rem; }
+        .data-label { font-family: 'Syncopate'; font-size: 0.7rem; color: var(--accent); width: 30%; }
+        .data-val { font-weight: 900; font-size: 2.5rem; text-align: right; }
 
         /* CONTACT */
-        .insta-link {
-            font-family: 'Bebas Neue'; font-size: clamp(4rem, 10vw, 8rem);
-            text-decoration: none; color: #fff; position: relative;
-        }
-        .insta-link::after {
-            content: ""; position: absolute; bottom: 0; left: 0;
-            width: 0; height: 10px; background: var(--accent);
+        .insta-btn {
+            font-family: 'Bebas Neue'; font-size: clamp(4rem, 12vw, 10rem);
+            text-decoration: none; color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
             transition: 0.4s;
         }
-        .insta-link:hover::after { width: 100%; }
+        .insta-btn:hover { -webkit-text-stroke: 1px var(--accent); color: var(--accent); text-shadow: 0 0 30px var(--accent); }
+
+        footer {
+            padding: 40px 10%; border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between;
+            font-family: 'Syncopate'; font-size: 0.6rem; opacity: 0.4;
+        }
 
         @media (max-width: 768px) {
             .brand-grid { grid-template-columns: 1fr; }
-            section { height: auto; padding: 100px 5%; }
-            .bio-val { font-size: 1.2rem; }
+            .data-val { font-size: 1.5rem; }
+            section { padding: 80px 5%; }
         }
     </style>
 </head>
@@ -143,60 +161,69 @@
     <div id="cursor"></div>
 
     <section>
-        <div class="bg-text">PRINCE</div>
-        <div class="tagline">ELITE FULL-STACK ENGINEER</div>
-        <h1 class="hero-title">PRINCE<br><span class="accent-text">TAILOR</span></h1>
-        <p style="margin-top: 20px; opacity: 0.5;">SIKAR // RAJASTHAN // INDIA</p>
+        <div class="outline-text">PRINCE</div>
+        <div class="tagline">FULL-STACK ELITE ENGINEER</div>
+        <h1 class="hero-title">PRINCE<br>TAILOR</h1>
+        <p style="margin-top: 20px; opacity: 0.5; font-family: 'Syncopate'; font-size: 0.6rem;">SIKAR // RAJASTHAN // INDIA</p>
     </section>
 
-    <section style="background: #050505;">
-        <div class="tagline" style="margin-bottom: 50px;">COLLABORATIONS & SKILLS</div>
+    <section style="background: #010101;">
+        <div class="outline-text" style="color: rgba(255,0,60,0.02); -webkit-text-stroke: 0;">POWER</div>
+        <div class="tagline" style="margin-bottom: 50px;">ELITE TECHNOLOGIES</div>
+        
         <div class="brand-grid">
-            <div class="brand-item">
-                <p>ECOSYSTEM</p>
-                <h2>GOOGLE</h2>
+            <div class="brand-card google">
+                <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google">
             </div>
-            <div class="brand-item">
-                <p>INFRASTRUCTURE</p>
-                <h2>MICROSOFT</h2>
+            <div class="brand-card microsoft">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft">
             </div>
-            <div class="brand-item">
-                <p>CLOUD TECH</p>
-                <h2>AMAZON</h2>
+            <div class="brand-card amazon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
             </div>
-            <div class="brand-item">
-                <p>CONNECTIVITY</p>
-                <h2>JIO</h2>
+            <div class="brand-card jio">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Reliance_Jio_Logo.svg/1024px-Reliance_Jio_Logo.svg.png" alt="Jio">
             </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="bg-text" style="left: -10%;">DATA</div>
-        <div class="bio-content">
-            <div class="bio-row">
-                <span class="bio-label">IDENTITY</span>
-                <span class="bio-val">PRINCE TAILOR</span>
+            <div class="brand-card apple">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style="filter: brightness(0) invert(1);">
             </div>
-            <div class="bio-row">
-                <span class="bio-label">CHRONOLOGY</span>
-                <span class="bio-val">15 YEARS OLD</span>
-            </div>
-            <div class="bio-row">
-                <span class="bio-label">BORN</span>
-                <span class="bio-val">28 / 12 / 2010</span>
-            </div>
-            <div class="bio-row">
-                <span class="bio-label">LOCATION</span>
-                <span class="bio-val">SIKAR, RAJASTHAN</span>
+            <div class="brand-card gemini">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Gemini_logo.svg" alt="Gemini">
             </div>
         </div>
     </section>
 
     <section>
-        <div class="tagline">READY TO DOMINATE?</div>
-        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-link">INSTAGRAM →</a>
+        <div class="tagline">DATA REPORT</div>
+        <table class="data-table">
+            <tr class="data-row">
+                <td class="data-cell data-label">IDENTITY</td>
+                <td class="data-cell data-val">PRINCE TAILOR</td>
+            </tr>
+            <tr class="data-row">
+                <td class="data-cell data-label">CHRONOLOGY</td>
+                <td class="data-cell data-val">15 YEARS OLD</td>
+            </tr>
+            <tr class="data-row">
+                <td class="data-cell data-label">DOB</td>
+                <td class="data-cell data-val">28 / 12 / 2010</td>
+            </tr>
+            <tr class="data-row">
+                <td class="data-cell data-label">ORIGIN</td>
+                <td class="data-cell data-val">SIKAR, RJ</td>
+            </tr>
+        </table>
     </section>
+
+    <section style="background: #000;">
+        <div class="tagline">CONNECT WITH THE ELITE</div>
+        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-btn">INSTAGRAM</a>
+    </section>
+
+    <footer>
+        <span>© 2026 PRINCE TAILOR CORE</span>
+        <span>SIKAR // INDIA</span>
+    </footer>
 
     <script>
         // PREMIUM CURSOR
@@ -209,17 +236,24 @@
         gsap.registerPlugin(ScrollTrigger);
 
         gsap.utils.toArray('section').forEach(section => {
-            gsap.from(section.querySelectorAll('.hero-title, .brand-item, .bio-row, .insta-link'), {
+            gsap.from(section.querySelectorAll('.hero-title, .brand-card, .data-row, .insta-btn'), {
                 scrollTrigger: {
                     trigger: section,
-                    start: "top 60%",
+                    start: "top 75%",
                 },
-                y: 100,
+                y: 80,
                 opacity: 0,
                 stagger: 0.1,
-                duration: 1.2,
-                ease: "expo.out"
+                duration: 1,
+                ease: "power3.out"
             });
+        });
+
+        // Hover Effect on Buttons
+        const buttons = document.querySelectorAll('.brand-card, .insta-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 4, backgroundColor: "rgba(255,255,255,0.1)" }));
+            btn.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, backgroundColor: "#fff" }));
         });
     </script>
 </body>
