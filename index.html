@@ -4,157 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="CzC0nJ2gcJTKm_fs-Rts94EWBperq31r1iIJViD39eY" />
-    <title>PRINCE TAILOR | GOOGLE ELITE DEVELOPER</title>
+    <title>PRINCE TAILOR | DIGITAL ARCHITECT</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&display=swap');
 
         :root {
-            --bg: #000000;
-            --accent: #ff003c; 
-            --gold: #ffcc00;
-            --blue: #00a2ff;
-            --green: #00ff88;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
+            --bg: #080808;
+            --accent: #ff003c;
+            --card-bg: #111111;
+            --border: rgba(255, 255, 255, 0.1);
+            --google: #4285F4;
+            --ms: #00A4EF;
+            --amazon: #FF9900;
+            --jio: #0F3D91;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         
         body { 
             background: var(--bg); 
-            color: var(--white); 
+            color: #fff; 
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
         }
 
-        /* CUSTOM CURSOR */
         #cursor {
-            position: fixed; width: 10px; height: 10px; background: var(--accent);
-            border-radius: 50%; pointer-events: none; z-index: 10000;
-            box-shadow: 0 0 20px var(--accent);
+            position: fixed; width: 10px; height: 10px; background: #fff;
+            border-radius: 50%; pointer-events: none; z-index: 99999;
+            mix-blend-mode: difference; transition: transform 0.2s;
         }
 
-        /* HERO SECTION */
-        .hero {
-            height: 80vh;
+        /* SECTION STYLING */
+        section {
+            min-height: 100vh;
+            width: 100%;
+            padding: 100px 8%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 10%;
+            border-bottom: 1px solid var(--border);
         }
 
+        .section-tag {
+            font-family: 'Syncopate';
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+        }
+
+        /* HERO SECTION */
+        .hero { background: radial-gradient(circle at top right, #1a0505, #080808); }
         .hero h1 {
             font-family: 'Archivo Black';
-            font-size: clamp(3rem, 12vw, 8rem);
-            line-height: 0.9;
+            font-size: clamp(3.5rem, 12vw, 9rem);
+            line-height: 0.8;
             text-transform: uppercase;
         }
+        .hero .location { margin-top: 30px; font-size: 1.2rem; opacity: 0.6; }
 
-        .red-text { color: var(--accent); }
-
-        /* CERTIFICATE GRID - HIGH VISIBILITY */
-        .section-title {
-            padding: 50px 10% 20px;
-            font-family: 'Archivo Black';
-            font-size: 2rem;
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent);
-            margin: 0 10% 40px;
-        }
-
-        .cert-grid {
+        /* BRANDS & CERTIFICATES SECTION */
+        .brands-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 0 10% 100px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        .cert-card {
-            background: var(--glass);
-            border: 2px solid rgba(255,255,255,0.1);
-            padding: 30px;
+        .brand-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 50px 40px;
             position: relative;
-            transition: 0.4s;
+            transition: 0.5s ease;
             overflow: hidden;
         }
 
-        .cert-card:hover {
-            border-color: var(--white);
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.1);
+        .brand-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        .brand-name {
+        .brand-logo {
             font-family: 'Archivo Black';
-            font-size: 1.2rem;
+            font-size: 2rem;
             margin-bottom: 10px;
             display: block;
         }
 
-        /* Brand Colors */
-        .google { color: #4285F4; }
-        .microsoft { color: #F25022; }
-        .amazon { color: #FF9900; }
-        .jio { color: #0F3D91; }
-
-        .cert-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--white);
-        }
-
-        .verify-tag {
+        /* Certificate Ribbons */
+        .cert-name { font-weight: 700; font-size: 1.4rem; margin-bottom: 20px; color: #ccc; }
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--accent);
+            border-radius: 50px;
             font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--green);
+            color: var(--accent);
         }
 
-        /* INFO SECTION */
-        .info-container {
-            padding: 0 10% 100px;
+        /* BIO SECTION */
+        .bio-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
         }
+        .bio-box h2 { font-family: 'Archivo Black'; font-size: 3rem; margin-bottom: 20px; }
+        .bio-box p { font-size: 1.5rem; line-height: 1.4; opacity: 0.8; }
 
-        .info-box h3 { font-family: 'Archivo Black'; font-size: 1.5rem; margin-bottom: 20px; color: var(--accent); }
-        .info-box p { font-size: 1.2rem; line-height: 1.6; opacity: 0.8; }
-
-        /* CONTACT */
-        .cta {
-            text-align: center;
-            padding: 100px 0;
-            background: linear-gradient(to bottom, transparent, #110004);
-        }
-
-        .insta-link {
+        /* CONTACT SECTION */
+        .contact { align-items: center; text-align: center; background: #000; }
+        .insta-btn {
             font-family: 'Archivo Black';
-            font-size: clamp(2rem, 8vw, 5rem);
-            color: var(--white);
+            font-size: clamp(2rem, 10vw, 6rem);
             text-decoration: none;
-            transition: 0.3s;
+            color: #fff;
+            transition: 0.4s;
+            -webkit-text-stroke: 1px #fff;
         }
-
-        .insta-link:hover { color: var(--accent); }
+        .insta-btn:hover { color: var(--accent); -webkit-text-stroke: 1px var(--accent); }
 
         footer {
-            padding: 40px 10%;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 50px 8%;
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
-            opacity: 0.6;
+            font-family: 'Syncopate';
+            font-size: 0.6rem;
+            opacity: 0.4;
         }
 
         @media (max-width: 768px) {
-            .info-container { grid-template-columns: 1fr; }
-            .hero { padding: 0 5%; }
+            .bio-grid { grid-template-columns: 1fr; }
+            section { padding: 80px 5%; }
         }
     </style>
 </head>
@@ -163,83 +150,93 @@
     <div id="cursor"></div>
 
     <section class="hero">
-        <p style="letter-spacing: 5px; color: var(--accent); margin-bottom: 10px;">OFFICIAL PORTFOLIO // 2026</p>
-        <h1>PRINCE<br><span class="red-text">TAILOR</span></h1>
-        <p style="max-width: 600px; margin-top: 20px; font-size: 1.2rem; opacity: 0.7;">
-            15-Year-Old Full-Stack Engineer from Sikar, Rajasthan. Specialized in creating high-performance digital ecosystems.
-        </p>
+        <div class="section-tag">// ARCHITECT</div>
+        <h1>PRINCE<br><span style="color: var(--accent);">TAILOR</span></h1>
+        <p class="location">SIKAR, RAJASTHAN // INDIA</p>
     </section>
 
-    <h2 class="section-title">PROFESSIONAL CERTIFICATIONS</h2>
-    
-    <section class="cert-grid">
-        <div class="cert-card">
-            <span class="brand-name google">GOOGLE</span>
-            <p class="cert-title">Advanced Software Engineering</p>
-            <span class="verify-tag">✓ Verified Expert</span>
-        </div>
+    <section id="certificates">
+        <div class="section-tag">// WORLD-CLASS CREDENTIALS</div>
+        <h2 style="font-family: 'Archivo Black'; font-size: 3rem; margin-bottom: 50px;">OFFICIAL <span style="color: var(--accent);">BRANDS</span></h2>
+        
+        <div class="brands-container">
+            <div class="brand-card" style="border-top: 5px solid var(--google);">
+                <span class="brand-logo" style="color: var(--google);">GOOGLE</span>
+                <p class="cert-name">Professional Data Engineering</p>
+                <span class="status-badge">CERTIFIED EXPERT</span>
+            </div>
 
-        <div class="cert-card">
-            <span class="brand-name microsoft">MICROSOFT</span>
-            <p class="cert-title">Full-Stack Cloud Architect</p>
-            <span class="verify-tag">✓ Verified Expert</span>
-        </div>
+            <div class="brand-card" style="border-top: 5px solid var(--ms);">
+                <span class="brand-logo" style="color: var(--ms);">MICROSOFT</span>
+                <p class="cert-name">Azure Solutions Architect</p>
+                <span class="status-badge">CERTIFIED EXPERT</span>
+            </div>
 
-        <div class="cert-card">
-            <span class="brand-name amazon">AMAZON</span>
-            <p class="cert-title">AWS Infrastructure Specialist</p>
-            <span class="verify-tag">✓ Verified Expert</span>
-        </div>
+            <div class="brand-card" style="border-top: 5px solid var(--amazon);">
+                <span class="brand-logo" style="color: var(--amazon);">AMAZON</span>
+                <p class="cert-name">AWS Cloud Practitioner</p>
+                <span class="status-badge">CERTIFIED EXPERT</span>
+            </div>
 
-        <div class="cert-card">
-            <span class="brand-name jio">JIO PLATFORMS</span>
-            <p class="cert-title">Cyber Security & Networks</p>
-            <span class="verify-tag">✓ Verified Expert</span>
-        </div>
-    </section>
-
-    <h2 class="section-title">IDENTITY DATA</h2>
-    <section class="info-container">
-        <div class="info-box">
-            <h3>BIOGRAPHY</h3>
-            <p>Name: Prince Tailor<br>
-               Age: 15 Years<br>
-               DOB: 28/12/2010<br>
-               Location: Sikar, Rajasthan, India</p>
-        </div>
-        <div class="info-box">
-            <h3>THE MISSION</h3>
-            <p>बिल्कुल सटीक और पावरफुल कोड लिखना ही मेरा लक्ष्य है। क्लास 10वीं के साथ-साथ मैं दुनिया के बेहतरीन सिस्टम्स को मात देने वाली इंजीनियरिंग कर रहा हूँ।</p>
+            <div class="brand-card" style="border-top: 5px solid var(--jio);">
+                <span class="brand-logo" style="color: var(--jio);">JIO PLATFORMS</span>
+                <p class="cert-name">Full-Stack Development</p>
+                <span class="status-badge">CERTIFIED EXPERT</span>
+            </div>
         </div>
     </section>
 
-    <section class="cta">
-        <p style="margin-bottom: 20px; letter-spacing: 3px;">INITIALIZE CONNECTION</p>
-        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-link">INSTAGRAM →</a>
+    <section id="about">
+        <div class="section-tag">// IDENTITY REPORT</div>
+        <div class="bio-grid">
+            <div class="bio-box">
+                <h2>THE<br>PROFILE</h2>
+            </div>
+            <div class="bio-box">
+                <p>NAME: <span style="color: var(--accent);">PRINCE TAILOR</span></p>
+                <p>AGE: 15 YEARS</p>
+                <p>DOB: 28 / 12 / 2010</p>
+                <p>ADDRESS: SIKAR, RAJASTHAN</p>
+                <p style="margin-top: 30px; font-size: 1.1rem; opacity: 0.6; font-family: 'Space Grotesk';">
+                    A visionary 15-year-old engineer rewriting the rules of modern web development. Currently dominating the tech space while completing Class 10th.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="section-tag">// INITIALIZE PROTOCOL</div>
+        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-btn">INSTAGRAM</a>
+        <p style="margin-top: 40px; opacity: 0.5;">CLICK TO CONNECT WITH THE ELITE</p>
     </section>
 
     <footer>
-        <span>© 2026 PRINCE TAILOR</span>
-        <span>SIKAR // RAJASTHAN // INDIA</span>
+        <span>© 2026 PRINCE TAILOR CORE</span>
+        <span>LAT: 27.6016° N | LONG: 75.1396° E</span>
     </footer>
 
     <script>
+        // Smooth Cursor
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.1
-            });
+            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
         });
 
-        // Simple Reveal
-        gsap.from(".cert-card", {
-            scrollTrigger: ".cert-grid",
-            y: 50,
-            opacity: 0,
-            stagger: 0.2,
-            duration: 1
+        // Scroll Reveal Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section.querySelectorAll('*'), {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 70%",
+                },
+                y: 50,
+                opacity: 0,
+                stagger: 0.1,
+                duration: 1,
+                ease: "power3.out"
+            });
         });
     </script>
 </body>
