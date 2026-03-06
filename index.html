@@ -4,144 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="CzC0nJ2gcJTKm_fs-Rts94EWBperq31r1iIJViD39eY" />
-    <title>PRINCE TAILOR | DIGITAL ARCHITECT</title>
+    <title>PRINCE TAILOR | ELITE DEV</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@300;900&family=Bebas+Neue&display=swap');
 
         :root {
-            --bg: #080808;
+            --bg: #000000;
             --accent: #ff003c;
-            --card-bg: #111111;
+            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
-            --google: #4285F4;
-            --ms: #00A4EF;
-            --amazon: #FF9900;
-            --jio: #0F3D91;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         
         body { 
             background: var(--bg); 
-            color: #fff; 
-            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text); 
+            font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
         }
 
+        /* CUSTOM CURSOR */
         #cursor {
-            position: fixed; width: 10px; height: 10px; background: #fff;
-            border-radius: 50%; pointer-events: none; z-index: 99999;
-            mix-blend-mode: difference; transition: transform 0.2s;
+            position: fixed; width: 15px; height: 15px; background: var(--accent);
+            border-radius: 50%; pointer-events: none; z-index: 10000;
+            box-shadow: 0 0 25px var(--accent); mix-blend-mode: difference;
         }
 
-        /* SECTION STYLING */
+        /* FULL SCREEN SECTIONS */
         section {
-            min-height: 100vh;
+            height: 100vh;
             width: 100%;
-            padding: 100px 8%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .section-tag {
-            font-family: 'Syncopate';
-            font-size: 0.8rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-            letter-spacing: 5px;
-        }
-
-        /* HERO SECTION */
-        .hero { background: radial-gradient(circle at top right, #1a0505, #080808); }
-        .hero h1 {
-            font-family: 'Archivo Black';
-            font-size: clamp(3.5rem, 12vw, 9rem);
-            line-height: 0.8;
-            text-transform: uppercase;
-        }
-        .hero .location { margin-top: 30px; font-size: 1.2rem; opacity: 0.6; }
-
-        /* BRANDS & CERTIFICATES SECTION */
-        .brands-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .brand-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 50px 40px;
+            align-items: center;
+            padding: 0 10%;
             position: relative;
-            transition: 0.5s ease;
             overflow: hidden;
         }
 
-        .brand-card:hover {
-            transform: translateY(-15px);
+        /* BACKGROUND ELEMENTS */
+        .bg-text {
+            position: absolute; font-size: 25vw; font-weight: 900;
+            color: rgba(255, 255, 255, 0.02); z-index: -1; white-space: nowrap;
+            font-family: 'Bebas Neue';
+        }
+
+        /* HERO SECTION */
+        .hero-title {
+            font-family: 'Bebas Neue';
+            font-size: clamp(5rem, 15vw, 12rem);
+            line-height: 0.8;
+            text-align: center;
+        }
+        .accent-text { color: var(--accent); }
+
+        .tagline {
+            font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 10px;
+            margin-bottom: 20px; color: var(--accent);
+        }
+
+        /* BRAND SECTION - THE "GOOD" PART */
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .brand-item {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .brand-item:hover {
+            background: var(--accent);
             border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transform: scale(1.05);
         }
 
-        .brand-logo {
-            font-family: 'Archivo Black';
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: block;
+        .brand-item h2 {
+            font-family: 'Bebas Neue';
+            font-size: 3.5rem;
+            letter-spacing: 2px;
         }
 
-        /* Certificate Ribbons */
-        .cert-name { font-weight: 700; font-size: 1.4rem; margin-bottom: 20px; color: #ccc; }
-        .status-badge {
-            display: inline-block;
-            padding: 5px 15px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--accent);
-            border-radius: 50px;
-            font-size: 0.7rem;
-            color: var(--accent);
+        .brand-item p {
+            font-family: 'Syncopate'; font-size: 0.6rem; opacity: 0.6;
         }
 
         /* BIO SECTION */
-        .bio-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-        .bio-box h2 { font-family: 'Archivo Black'; font-size: 3rem; margin-bottom: 20px; }
-        .bio-box p { font-size: 1.5rem; line-height: 1.4; opacity: 0.8; }
-
-        /* CONTACT SECTION */
-        .contact { align-items: center; text-align: center; background: #000; }
-        .insta-btn {
-            font-family: 'Archivo Black';
-            font-size: clamp(2rem, 10vw, 6rem);
-            text-decoration: none;
-            color: #fff;
-            transition: 0.4s;
-            -webkit-text-stroke: 1px #fff;
-        }
-        .insta-btn:hover { color: var(--accent); -webkit-text-stroke: 1px var(--accent); }
-
-        footer {
-            padding: 50px 8%;
+        .bio-content { text-align: left; width: 100%; max-width: 800px; }
+        .bio-row {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
             display: flex;
             justify-content: space-between;
-            font-family: 'Syncopate';
-            font-size: 0.6rem;
-            opacity: 0.4;
+            align-items: center;
         }
+        .bio-label { font-family: 'Syncopate'; font-size: 0.8rem; color: var(--accent); }
+        .bio-val { font-size: 2rem; font-weight: 900; }
+
+        /* CONTACT */
+        .insta-link {
+            font-family: 'Bebas Neue'; font-size: clamp(4rem, 10vw, 8rem);
+            text-decoration: none; color: #fff; position: relative;
+        }
+        .insta-link::after {
+            content: ""; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 10px; background: var(--accent);
+            transition: 0.4s;
+        }
+        .insta-link:hover::after { width: 100%; }
 
         @media (max-width: 768px) {
-            .bio-grid { grid-template-columns: 1fr; }
-            section { padding: 80px 5%; }
+            .brand-grid { grid-template-columns: 1fr; }
+            section { height: auto; padding: 100px 5%; }
+            .bio-val { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -149,93 +142,83 @@
 
     <div id="cursor"></div>
 
-    <section class="hero">
-        <div class="section-tag">// ARCHITECT</div>
-        <h1>PRINCE<br><span style="color: var(--accent);">TAILOR</span></h1>
-        <p class="location">SIKAR, RAJASTHAN // INDIA</p>
+    <section>
+        <div class="bg-text">PRINCE</div>
+        <div class="tagline">ELITE FULL-STACK ENGINEER</div>
+        <h1 class="hero-title">PRINCE<br><span class="accent-text">TAILOR</span></h1>
+        <p style="margin-top: 20px; opacity: 0.5;">SIKAR // RAJASTHAN // INDIA</p>
     </section>
 
-    <section id="certificates">
-        <div class="section-tag">// WORLD-CLASS CREDENTIALS</div>
-        <h2 style="font-family: 'Archivo Black'; font-size: 3rem; margin-bottom: 50px;">OFFICIAL <span style="color: var(--accent);">BRANDS</span></h2>
-        
-        <div class="brands-container">
-            <div class="brand-card" style="border-top: 5px solid var(--google);">
-                <span class="brand-logo" style="color: var(--google);">GOOGLE</span>
-                <p class="cert-name">Professional Data Engineering</p>
-                <span class="status-badge">CERTIFIED EXPERT</span>
+    <section style="background: #050505;">
+        <div class="tagline" style="margin-bottom: 50px;">COLLABORATIONS & SKILLS</div>
+        <div class="brand-grid">
+            <div class="brand-item">
+                <p>ECOSYSTEM</p>
+                <h2>GOOGLE</h2>
             </div>
-
-            <div class="brand-card" style="border-top: 5px solid var(--ms);">
-                <span class="brand-logo" style="color: var(--ms);">MICROSOFT</span>
-                <p class="cert-name">Azure Solutions Architect</p>
-                <span class="status-badge">CERTIFIED EXPERT</span>
+            <div class="brand-item">
+                <p>INFRASTRUCTURE</p>
+                <h2>MICROSOFT</h2>
             </div>
-
-            <div class="brand-card" style="border-top: 5px solid var(--amazon);">
-                <span class="brand-logo" style="color: var(--amazon);">AMAZON</span>
-                <p class="cert-name">AWS Cloud Practitioner</p>
-                <span class="status-badge">CERTIFIED EXPERT</span>
+            <div class="brand-item">
+                <p>CLOUD TECH</p>
+                <h2>AMAZON</h2>
             </div>
-
-            <div class="brand-card" style="border-top: 5px solid var(--jio);">
-                <span class="brand-logo" style="color: var(--jio);">JIO PLATFORMS</span>
-                <p class="cert-name">Full-Stack Development</p>
-                <span class="status-badge">CERTIFIED EXPERT</span>
+            <div class="brand-item">
+                <p>CONNECTIVITY</p>
+                <h2>JIO</h2>
             </div>
         </div>
     </section>
 
-    <section id="about">
-        <div class="section-tag">// IDENTITY REPORT</div>
-        <div class="bio-grid">
-            <div class="bio-box">
-                <h2>THE<br>PROFILE</h2>
+    <section>
+        <div class="bg-text" style="left: -10%;">DATA</div>
+        <div class="bio-content">
+            <div class="bio-row">
+                <span class="bio-label">IDENTITY</span>
+                <span class="bio-val">PRINCE TAILOR</span>
             </div>
-            <div class="bio-box">
-                <p>NAME: <span style="color: var(--accent);">PRINCE TAILOR</span></p>
-                <p>AGE: 15 YEARS</p>
-                <p>DOB: 28 / 12 / 2010</p>
-                <p>ADDRESS: SIKAR, RAJASTHAN</p>
-                <p style="margin-top: 30px; font-size: 1.1rem; opacity: 0.6; font-family: 'Space Grotesk';">
-                    A visionary 15-year-old engineer rewriting the rules of modern web development. Currently dominating the tech space while completing Class 10th.
-                </p>
+            <div class="bio-row">
+                <span class="bio-label">CHRONOLOGY</span>
+                <span class="bio-val">15 YEARS OLD</span>
+            </div>
+            <div class="bio-row">
+                <span class="bio-label">BORN</span>
+                <span class="bio-val">28 / 12 / 2010</span>
+            </div>
+            <div class="bio-row">
+                <span class="bio-label">LOCATION</span>
+                <span class="bio-val">SIKAR, RAJASTHAN</span>
             </div>
         </div>
     </section>
 
-    <section class="contact">
-        <div class="section-tag">// INITIALIZE PROTOCOL</div>
-        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-btn">INSTAGRAM</a>
-        <p style="margin-top: 40px; opacity: 0.5;">CLICK TO CONNECT WITH THE ELITE</p>
+    <section>
+        <div class="tagline">READY TO DOMINATE?</div>
+        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-link">INSTAGRAM →</a>
     </section>
-
-    <footer>
-        <span>© 2026 PRINCE TAILOR CORE</span>
-        <span>LAT: 27.6016° N | LONG: 75.1396° E</span>
-    </footer>
 
     <script>
-        // Smooth Cursor
+        // PREMIUM CURSOR
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
             gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
         });
 
-        // Scroll Reveal Animations
+        // SMOOTH SCROLL REVEAL
         gsap.registerPlugin(ScrollTrigger);
 
         gsap.utils.toArray('section').forEach(section => {
-            gsap.from(section.querySelectorAll('*'), {
+            gsap.from(section.querySelectorAll('.hero-title, .brand-item, .bio-row, .insta-link'), {
                 scrollTrigger: {
                     trigger: section,
-                    start: "top 70%",
+                    start: "top 60%",
                 },
-                y: 50,
+                y: 100,
                 opacity: 0,
                 stagger: 0.1,
-                duration: 1,
-                ease: "power3.out"
+                duration: 1.2,
+                ease: "expo.out"
             });
         });
     </script>
