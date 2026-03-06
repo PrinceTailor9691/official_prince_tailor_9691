@@ -3,250 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRINCE TAILOR | NEXT-GEN DEVELOPER</title>
+    <title>PRINCE TAILOR | NEXT-GEN ELITE</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;800&family=Unbounded:wght@900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@400;900&display=swap');
 
         :root {
-            --bg: #050505;
-            --primary: #7000ff; /* Electric Purple */
-            --secondary: #00d4ff; /* Neon Blue */
-            --text: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
+            --bg: #030008;
+            --neon-blue: #00f2ff;
+            --neon-purple: #bc00ff;
+            --neon-pink: #ff00bd;
+            --glass: rgba(255, 255, 255, 0.07);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #fff; 
+            font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
-            /* Background Animation Gradient */
-            background: radial-gradient(circle at 50% 50%, #12002e 0%, #050505 100%);
         }
 
-        /* DYNAMIC GRADIENT HERO */
+        /* ANIMATED BACKGROUND GRADIENT */
+        .bg-glow {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a0033 0%, #030008 100%);
+            z-index: -1;
+        }
+
         section {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 80px 20px;
-            position: relative;
-        }
-
-        .hero-title {
-            font-family: 'Unbounded', cursive;
-            font-size: clamp(3.5rem, 12vw, 9rem);
-            line-height: 0.9;
+            padding: 100px 20px;
             text-align: center;
-            background: linear-gradient(to right, #fff, var(--secondary), var(--primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            filter: drop-shadow(0 0 30px rgba(112, 0, 255, 0.3));
         }
 
-        .tagline {
-            font-family: 'Syncopate';
-            font-size: 0.7rem;
-            letter-spacing: 8px;
-            color: var(--secondary);
-            margin-bottom: 20px;
+        /* HERO AREA */
+        .hero-name {
+            font-size: clamp(4rem, 15vw, 10rem);
+            font-weight: 900;
             text-transform: uppercase;
+            line-height: 0.8;
+            background: linear-gradient(to bottom, #fff 30%, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
         }
 
-        /* LATEST BRAND GRID - NEON CARDS */
+        .tag {
+            font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px;
+            color: var(--neon-pink); margin-bottom: 40px;
+        }
+
+        /* LATEST BRAND SECTION - BOLD & ICONIC */
         .brand-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             width: 100%;
-            max-width: 1100px;
-            margin-top: 50px;
+            max-width: 1200px;
         }
 
-        .brand-card {
+        .brand-box {
             background: var(--glass);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 24px;
-            padding: 40px 20px;
+            padding: 40px;
+            border-radius: 30px;
+            transition: 0.5s;
+            backdrop-filter: blur(15px);
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
+            gap: 15px;
         }
 
-        .brand-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            background: rgba(255,255,255,0.1);
-            border-color: var(--secondary);
-            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+        .brand-box:hover {
+            border-color: var(--neon-blue);
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
         }
 
-        .brand-card img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            margin-bottom: 15px;
-            /* SVG Glow */
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+        .brand-logo-img {
+            width: 60px; height: 60px; object-fit: contain;
         }
 
-        .brand-card span {
-            font-family: 'Syncopate';
-            font-size: 0.7rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
+        .brand-name { font-family: 'Syncopate'; font-size: 0.7rem; font-weight: bold; }
 
-        /* IDENTITY REPORT - MODERN STYLE */
-        .data-container {
-            width: 100%;
-            max-width: 800px;
+        /* DATA REPORT TABLE */
+        .data-card {
             background: var(--glass);
-            padding: 40px;
-            border-radius: 30px;
-            border: 1px solid var(--border);
+            width: 100%; max-width: 800px;
+            padding: 40px; border-radius: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+        .data-item {
+            display: flex; justify-content: space-between;
+            padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .data-label { color: var(--secondary); font-family: 'Syncopate'; font-size: 0.6rem; }
-        .data-val { font-family: 'Unbounded'; font-size: clamp(1rem, 4vw, 2rem); color: #fff; }
+        .data-label { color: var(--neon-blue); font-family: 'Syncopate'; font-size: 0.6rem; }
+        .data-val { font-size: 1.8rem; font-weight: 900; }
 
-        /* NEON INSTAGRAM BUTTON */
+        /* NEON INSTAGRAM BUTTON - CANNOT BE MISSED */
         .insta-btn {
-            padding: 25px 60px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: #fff;
+            padding: 30px 80px;
+            background: transparent;
+            border: 2px solid var(--neon-pink);
+            color: var(--neon-pink);
             text-decoration: none;
-            border-radius: 50px;
-            font-family: 'Unbounded';
-            font-size: 1.2rem;
+            font-size: 2rem;
+            font-weight: 900;
+            border-radius: 100px;
             transition: 0.4s;
-            box-shadow: 0 10px 40px rgba(112, 0, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 0, 189, 0.2);
+            font-family: 'Syncopate';
         }
 
         .insta-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 60px rgba(0, 212, 255, 0.6);
+            background: var(--neon-pink);
+            color: #000;
+            box-shadow: 0 0 50px var(--neon-pink);
         }
 
         @media (max-width: 768px) {
-            .hero-title { font-size: 4rem; }
-            .data-row { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .data-val { font-size: 1.5rem; }
+            .hero-name { font-size: 5rem; }
+            .data-item { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-glow"></div>
+
     <section>
-        <div class="tagline">The Digital Architect</div>
-        <h1 class="hero-title">PRINCE<br>TAILOR</h1>
-        <div style="margin-top: 30px; font-family: 'Syncopate'; font-size: 0.6rem; opacity: 0.6;">
-            SIKAR // RAJASTHAN // INDIA
-        </div>
+        <div class="tag">TOP-TIER DEVELOPER</div>
+        <h1 class="hero-name">PRINCE<br>TAILOR</h1>
+        <p style="opacity: 0.5;">SIKAR // RAJASTHAN // INDIA</p>
     </section>
 
-    <section id="brands">
-        <div class="tagline">Latest Ecosystems</div>
+    <section>
+        <div class="tag" style="color: var(--neon-blue);">PARTNERED TECH</div>
         <div class="brand-grid">
-            <div class="brand-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
-                <span>GOOGLE</span>
+            <div class="brand-box">
+                <img class="brand-logo-img" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google">
+                <span class="brand-name">GOOGLE</span>
             </div>
-            <div class="brand-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft">
-                <span>MICROSOFT</span>
+            <div class="brand-box">
+                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft">
+                <span class="brand-name">MICROSOFT</span>
             </div>
-            <div class="brand-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
-                <span>AMAZON</span>
+            <div class="brand-box">
+                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="filter: invert(1);" alt="Apple">
+                <span class="brand-name">APPLE</span>
             </div>
-            <div class="brand-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Reliance_Jio_Logo.svg" alt="Jio">
-                <span>JIO</span>
+            <div class="brand-box">
+                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Gemini_logo.svg" alt="Gemini">
+                <span class="brand-name" style="color: var(--neon-blue);">GEMINI AI</span>
             </div>
-            <div class="brand-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style="filter: invert(1);">
-                <span>APPLE</span>
+            <div class="brand-box">
+                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+                <span class="brand-name">AMAZON</span>
             </div>
-            <div class="brand-card" style="border: 1px solid var(--primary);">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Gemini_logo.svg" alt="Gemini">
-                <span style="color: var(--secondary);">GEMINI AI</span>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="tagline">Personal Report</div>
-        <div class="data-container">
-            <div class="data-row">
-                <span class="data-label">IDENTITY</span>
-                <span class="data-val">PRINCE TAILOR</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">CHRONOLOGY</span>
-                <span class="data-val">15 YEARS OLD</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">BORN</span>
-                <span class="data-val">28 DEC 2010</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">LOCATION</span>
-                <span class="data-val">SIKAR, RJ</span>
+            <div class="brand-box">
+                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Reliance_Jio_Logo.svg" alt="Jio">
+                <span class="brand-name">JIO</span>
             </div>
         </div>
     </section>
 
     <section>
-        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-btn">
-            INSTAGRAM
-        </a>
-        <p style="margin-top: 30px; opacity: 0.4; font-size: 0.8rem; letter-spacing: 2px;">© 2026 ELITE PROTOCOL</p>
+        <div class="tag" style="color: var(--neon-purple);">CORE IDENTITY</div>
+        <div class="data-card">
+            <div class="data-item"><span class="data-label">NAME</span><span class="data-val">PRINCE TAILOR</span></div>
+            <div class="data-item"><span class="data-label">AGE</span><span class="data-val">15 YEARS</span></div>
+            <div class="data-item"><span class="data-label">DOB</span><span class="data-val">28 / 12 / 2010</span></div>
+            <div class="data-item"><span class="data-label">CITY</span><span class="data-val">SIKAR, RJ</span></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="tag">WANT TO WORK TOGETHER?</div>
+        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-btn">INSTAGRAM</a>
     </section>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Advanced Reveal
-        gsap.utils.toArray('section').forEach(section => {
-            gsap.from(section.querySelectorAll('.hero-title, .brand-card, .data-row, .insta-btn'), {
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 80%",
-                },
-                y: 60,
-                opacity: 0,
-                stagger: 0.15,
-                duration: 1.2,
-                ease: "expo.out"
-            });
-        });
-
-        // Background Mouse Effect
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            gsap.to('body', {
-                background: `radial-gradient(circle at ${x * 100}% ${y * 100}%, #12002e 0%, #050505 100%)`,
-                duration: 2
+        // Advanced entrance animation
+        gsap.utils.toArray('section').forEach(sec => {
+            gsap.from(sec.querySelectorAll('.hero-name, .brand-box, .data-item, .insta-btn'), {
+                scrollTrigger: { trigger: sec, start: "top 70%" },
+                y: 50, opacity: 0, stagger: 0.1, duration: 1, ease: "power4.out"
             });
         });
     </script>
