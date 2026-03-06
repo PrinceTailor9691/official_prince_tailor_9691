@@ -3,300 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRINCE TAILOR | DIGITAL MASTERMINDS</title>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
+    <title>PRINCE TAILOR | PRO EDITION</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Poppins:wght@400;900&family=Bebas+Neue&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Poppins:wght@300;900&family=Bebas+Neue&display=swap');
 
-        :root {
-            /* फास्ट कलर चेंज के लिए बेसिक एंकर - एनिमेशन से कंट्रोल होगा */
-            --vibrant-1: #1a0c3a;
-            --vibrant-2: #00f2ff;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         
         body { 
             color: #fff; 
             font-family: 'Poppins', sans-serif;
+            background: #050505;
             overflow-x: hidden;
-            /* ANIMATED VIBRANT FLUID BACKGROUND */
-            background: linear-gradient(-45deg, #1a0c3a, #bc00ff, #00d4ff, #ff00bd, #00ff88, #ffcc00, #ff5722, #0d47a1);
-            background-size: 800% 800%;
-            animation: vibrantFluid 5s ease infinite; /* Fast 5s for up to 10+ color changes */
-            min-height: 100vh;
         }
 
-        @keyframes vibrantFluid {
+        /* SLOW & GENTLE BACKGROUND - LOW RAM USAGE */
+        .bg-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(-45deg, #0f0c29, #1a1a2e, #0d0d2b, #16213e);
+            background-size: 400% 400%;
+            animation: gradientShift 30s ease-in-out infinite; /* Very Slow - 30 Seconds */
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
             0% { background-position: 0% 50%; }
-            12.5% { background-position: 100% 50%; } /* Fast moves to next color */
-            25% { background-position: 0% 100%; }
-            37.5% { background-position: 100% 100%; }
-            50% { background-position: 50% 0%; }
-            62.5% { background-position: 100% 0%; }
-            75% { background-position: 50% 100%; }
-            87.5% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        section {
-            min-height: auto; /* Space कम करने के लिए auto */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 5%; /* Compact padding */
-            position: relative;
-        }
+        section { padding: 80px 8%; position: relative; }
 
-        /* HERO AREA */
-        .hero-title {
-            font-family: 'Bebas Neue';
-            font-size: clamp(3rem, 12vw, 8rem);
-            line-height: 0.85;
-            text-align: center;
-            background: linear-gradient(180deg, #fff 40%, #00f2ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-        }
+        .tag { font-family: 'Syncopate'; font-size: 0.6rem; color: #00f2ff; letter-spacing: 4px; margin-bottom: 10px; opacity: 0.8; }
+        .section-title { font-family: 'Bebas Neue'; font-size: 3.5rem; margin-bottom: 30px; letter-spacing: 2px; }
 
-        .tagline {
-            font-family: 'Syncopate'; font-size: 0.65rem; letter-spacing: 6px;
-            color: #bc00ff; margin-bottom: 20px;
-        }
-
-        /* COMPACT BRAND GRID - NO BOXES, NO GAPS */
+        /* HERO */
+        .hero { height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero h1 { font-family: 'Bebas Neue'; font-size: clamp(4rem, 12vw, 9rem); line-height: 0.9; color: #fff; }
+        
+        /* 20+ BRANDS - OPTIMIZED GRID */
         .brand-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px; /* Compact gap */
-            width: 100%;
-            max-width: 1000px;
-            margin-top: 30px;
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 15px; width: 100%; max-width: 900px;
         }
-
-        @media (min-width: 768px) {
-            .brand-grid { grid-template-columns: repeat(6, 1fr); gap: 20px;}
-        }
+        @media (min-width: 768px) { .brand-grid { grid-template-columns: repeat(8, 1fr); } }
 
         .brand-item {
-            background: rgba(255, 255, 255, 0.03); /* subtle fill, no big boxes */
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: 0.4s;
-            border-radius: 10px;
-            opacity: 0.6; /* subtle look by default */
+            background: rgba(255,255,255,0.03); padding: 10px; border-radius: 12px;
+            display: flex; flex-direction: column; align-items: center; transition: 0.3s;
         }
+        .brand-item img { width: 30px; height: 30px; object-fit: contain; filter: brightness(1.5); }
+        .brand-item span { font-size: 0.4rem; font-family: 'Syncopate'; margin-top: 5px; opacity: 0.5; }
 
-        .brand-item:hover {
-            opacity: 1; /* full color on hover */
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .brand-logo-img {
-            max-width: 100%; /* No cutting */
-            max-height: 35px; /* Uniform height */
-            object-fit: contain; /* No cutting */
-            margin-bottom: 5px;
-        }
-
-        .brand-name { 
-            font-family: 'Syncopate'; 
-            font-size: 0.5rem; 
-            font-weight: bold; 
-            color: #fff; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.7;
-        }
+        /* SKILLS */
+        .skill-row { margin-bottom: 20px; }
+        .bar-bg { background: rgba(255,255,255,0.05); height: 6px; border-radius: 10px; margin-top: 8px; }
+        .bar-fill { height: 100%; background: #00f2ff; border-radius: 10px; }
 
         /* DATA BOX */
-        .data-card {
-            background: rgba(0, 0, 0, 0.3);
-            width: 100%; max-width: 600px;
-            padding: 25px; border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            margin-top: 30px;
+        .data-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; }
+        .data-line { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .data-line .val { color: #00f2ff; font-weight: 900; }
+
+        .btn {
+            display: inline-block; padding: 18px 45px; background: #fff; color: #000;
+            text-decoration: none; font-family: 'Syncopate'; font-size: 0.7rem; font-weight: 900;
+            border-radius: 8px; margin-top: 30px; transition: 0.3s;
         }
-
-        .data-item {
-            display: flex; justify-content: space-between;
-            padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .data-label { color: #00f2ff; font-family: 'Syncopate'; font-size: 0.5rem; }
-        .data-val { font-weight: 900; font-size: 1.3rem; font-family: 'Bebas Neue'; }
-
-        /* CONTACT BUTTON */
-        .insta-btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 18px 50px;
-            background: #fff; color: #000;
-            text-decoration: none; font-family: 'Syncopate';
-            font-size: 0.8rem; border-radius: 8px; font-weight: 900;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        .insta-btn:hover {
-            background: #00f2ff; color: #fff;
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
-            transform: scale(1.05);
-        }
-
-        footer {
-            padding: 30px; text-align: center;
-            font-family: 'Syncopate'; font-size: 0.5rem; opacity: 0.4;
-        }
-
     </style>
 </head>
 <body>
 
-    <section style="padding-top: 60px;">
-        <div class="tagline">WORLD CLASS ARCHITECT</div>
-        <h1 class="hero-title">PRINCE TAILOR</h1>
-        <p style="opacity: 0.5; font-size: 0.7rem; margin-top: 10px;">SIKAR // RJ // INDIA</p>
+    <div class="bg-canvas"></div>
+
+    <section class="hero">
+        <div class="tag">TOP TIER DEVELOPER</div>
+        <h1>PRINCE<br>TAILOR</h1>
+        <p style="letter-spacing: 5px; margin-top: 15px; opacity: 0.5; font-size: 0.8rem;">SIKAR // RAJASTHAN // INDIA</p>
+        <a href="#about" class="btn">VIEW DETAILS</a>
     </section>
 
-    <section>
-        <div class="tagline" style="color: #00ff88;">POWERED BY LEGENDS</div>
+    <section id="brands">
+        <div class="tag">NETWORK</div>
+        <h2 class="section-title">GLOBAL TECH STACK</h2>
         <div class="brand-grid">
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
-                <span class="brand-name">GOOGLE</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="filter: invert(1);" alt="Apple">
-                <span class="brand-name">APPLE</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg" alt="NVIDIA">
-                <span class="brand-name">NVIDIA</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png" alt="Tesla">
-                <span class="brand-name">TESLA</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft">
-                <span class="brand-name">MICROSOFT</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
-                <span class="brand-name">AMAZON</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="META">
-                <span class="brand-name">META</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
-                <span class="brand-name">NETFLIX</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Gemini_logo.svg/1024px-Gemini_logo.svg.png" alt="Gemini">
-                <span class="brand-name" style="color:#bc00ff">GEMINI AI</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Reliance_Jio_Logo.svg" alt="Jio">
-                <span class="brand-name">JIO</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Intel_logo_%282020%29.svg" alt="Intel">
-                <span class="brand-name">INTEL</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/AMD_Logo.svg" alt="AMD">
-                <span class="brand-name">AMD</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
-                <span class="brand-name">YOUTUBE</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style="filter: invert(1);" alt="GitHub">
-                <span class="brand-name">GITHUB</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/1024px-OpenAI_Logo.svg.png" style="filter: invert(1);" alt="OpenAI">
-                <span class="brand-name">OPENAI</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/3/36/SpaceX_Logo_Black.svg" style="filter: invert(1);" alt="SpaceX">
-                <span class="brand-name">SPACEX</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/X_Glow_Final_logo.svg/1024px-X_Glow_Final_logo.svg.png" style="filter: invert(1);" alt="Twitter/X">
-                <span class="brand-name">TWITTER / X</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg" style="filter: invert(1);" alt="Sony">
-                <span class="brand-name">SONY</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung">
-                <span class="brand-name">SAMSUNG</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Adobe_Corporate_Icon.svg/1024px-Adobe_Corporate_Icon.svg.png" alt="Adobe">
-                <span class="brand-name">ADOBE</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
-                <span class="brand-name">IBM</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle">
-                <span class="brand-name">ORACLE</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Siemens-logo.svg" style="filter: invert(1);" alt="Siemens">
-                <span class="brand-name">SIEMENS</span>
-            </div>
-            <div class="brand-item">
-                <img class="brand-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/TATA-Logo.png" alt="Tata">
-                <span class="brand-name">TATA</span>
-            </div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"><span>GOOGLE</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="filter:invert(1)"><span>APPLE</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"><span>MSFT</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg"><span>NVIDIA</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"><span>AMZN</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Gemini_logo.svg/1024px-Gemini_logo.svg.png"><span>GEMINI</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"><span>NFLX</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg"><span>META</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Reliance_Jio_Logo.svg"><span>JIO</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Intel_logo_%282020%29.svg"><span>INTEL</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/AMD_Logo.svg"><span>AMD</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"><span>YT</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style="filter:invert(1)"><span>GIT</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/36/SpaceX_Logo_Black.svg" style="filter:invert(1)"><span>SPACEX</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"><span>SMSNG</span></div>
+            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"><span>IBM</span></div>
         </div>
     </section>
 
-    <section>
-        <div class="tagline" style="color: #ff5722;">BIOMETRIC REPORT</div>
-        <div class="data-card">
-            <div class="data-item"><span class="data-label">IDENTITY</span><span class="data-val">PRINCE TAILOR</span></div>
-            <div class="data-item"><span class="data-label">CHRONO</span><span class="data-val">15 YEARS</span></div>
-            <div class="data-item"><span class="data-label">BORN</span><span class="data-val">28/12/2010</span></div>
-            <div class="data-item"><span class="data-label">LOCATION</span><span class="data-val">SIKAR, RJ</span></div>
+    <section id="about">
+        <div class="tag">IDENTITY</div>
+        <h2 class="section-title">REPORT</h2>
+        <div class="data-box">
+            <div class="data-line"><span>NAME</span><span class="val">PRINCE TAILOR</span></div>
+            <div class="data-line"><span>EXPERIENCE</span><span class="val">15 YEARS</span></div>
+            <div class="data-line"><span>BORN</span><span class="val">28/12/2010</span></div>
+            <div class="data-line"><span>ORIGIN</span><span class="val">SIKAR, RJ</span></div>
         </div>
-        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-btn">INSTAGRAM</a>
+        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="btn">INSTAGRAM</a>
     </section>
 
-    <footer>
-        © 2026 PRINCE TAILOR CORE // THE EXCELLENCE STANDARD
+    <footer style="padding: 40px; text-align: center; opacity: 0.3; font-size: 0.6rem; font-family: 'Syncopate';">
+        © 2026 PRINCE TAILOR CORE // OPTIMIZED FOR PERFORMANCE
     </footer>
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Simple entrance animation for sections
-        gsap.utils.toArray('section').forEach(sec => {
-            gsap.from(sec, {
-                scrollTrigger: { trigger: sec, start: "top 80%" },
-                y: 30, opacity: 0, duration: 1, ease: "expo.out"
-            });
-        });
-    </script>
 </body>
-    </html>
-    
+</html>
