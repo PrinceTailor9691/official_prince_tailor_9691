@@ -4,234 +4,242 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="CzC0nJ2gcJTKm_fs-Rts94EWBperq31r1iIJViD39eY" />
-    <title>PRINCE TAILOR | ARCHITECT OF CHAOS</title>
+    <title>PRINCE TAILOR | GOOGLE ELITE DEVELOPER</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;700&family=Bebas+Neue&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;700&display=swap');
 
         :root {
-            --bg: #030303;
+            --bg: #000000;
             --accent: #ff003c; 
-            --accent-glow: rgba(255, 0, 60, 0.5);
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
+            --gold: #ffcc00;
+            --blue: #00a2ff;
+            --green: #00ff88;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         
         body { 
             background: var(--bg); 
-            color: #fff; 
+            color: var(--white); 
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
         }
 
-        /* PREMIUM GRAIN EFFECT */
-        .noise {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.05; pointer-events: none; z-index: 9999;
-        }
-
+        /* CUSTOM CURSOR */
         #cursor {
-            position: fixed; width: 12px; height: 12px; background: var(--accent);
+            position: fixed; width: 10px; height: 10px; background: var(--accent);
             border-radius: 50%; pointer-events: none; z-index: 10000;
             box-shadow: 0 0 20px var(--accent);
         }
 
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 30px 60px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; mix-blend-mode: difference;
-        }
-
-        .logo { font-family: 'Syncopate'; font-weight: 700; font-size: 1.2rem; letter-spacing: 5px; }
-
-        /* HERO SECTION - REINVENTED */
+        /* HERO SECTION */
         .hero {
-            height: 100vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #1a0005 0%, #030303 100%);
+            padding: 0 10%;
         }
 
-        .hero-sub { font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 10px; color: var(--accent); margin-bottom: 20px; }
-        
-        .main-title {
-            font-family: 'Bebas Neue';
-            font-size: clamp(5rem, 20vw, 15rem);
-            line-height: 0.8;
-            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
-            color: transparent;
-            background: linear-gradient(180deg, #fff 0%, #444 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
+        .hero h1 {
+            font-family: 'Archivo Black';
+            font-size: clamp(3rem, 12vw, 8rem);
+            line-height: 0.9;
+            text-transform: uppercase;
         }
 
-        /* CERTIFICATES SECTION */
-        .section-label { padding: 100px 60px 20px; font-family: 'Syncopate'; font-size: 0.8rem; color: var(--accent); }
-        
-        .grid {
+        .red-text { color: var(--accent); }
+
+        /* CERTIFICATE GRID - HIGH VISIBILITY */
+        .section-title {
+            padding: 50px 10% 20px;
+            font-family: 'Archivo Black';
+            font-size: 2rem;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            margin: 0 10% 40px;
+        }
+
+        .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px; padding: 0 60px 100px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 10% 100px;
         }
 
-        .card {
+        .cert-card {
             background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 40px;
-            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            border: 2px solid rgba(255,255,255,0.1);
+            padding: 30px;
             position: relative;
+            transition: 0.4s;
+            overflow: hidden;
         }
 
-        .card:hover {
-            background: rgba(255, 0, 60, 0.05);
-            border-color: var(--accent);
+        .cert-card:hover {
+            border-color: var(--white);
             transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
         }
 
-        .card h4 { font-family: 'Syncopate'; font-size: 0.6rem; margin-bottom: 15px; opacity: 0.6; }
-        .card p { font-size: 1.5rem; font-weight: 700; }
-        .card .provider { color: var(--accent); font-size: 0.8rem; margin-top: 10px; font-family: 'Space Grotesk'; }
-
-        /* CONTACT CTA */
-        .contact-box {
-            height: 60vh; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center;
+        .brand-name {
+            font-family: 'Archivo Black';
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .insta-btn {
-            font-family: 'Bebas Neue'; font-size: 5rem;
-            color: #fff; text-decoration: none;
+        /* Brand Colors */
+        .google { color: #4285F4; }
+        .microsoft { color: #F25022; }
+        .amazon { color: #FF9900; }
+        .jio { color: #0F3D91; }
+
+        .cert-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .verify-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--green);
+        }
+
+        /* INFO SECTION */
+        .info-container {
+            padding: 0 10% 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .info-box h3 { font-family: 'Archivo Black'; font-size: 1.5rem; margin-bottom: 20px; color: var(--accent); }
+        .info-box p { font-size: 1.2rem; line-height: 1.6; opacity: 0.8; }
+
+        /* CONTACT */
+        .cta {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(to bottom, transparent, #110004);
+        }
+
+        .insta-link {
+            font-family: 'Archivo Black';
+            font-size: clamp(2rem, 8vw, 5rem);
+            color: var(--white);
+            text-decoration: none;
             transition: 0.3s;
         }
 
-        .insta-btn:hover { color: var(--accent); transform: scale(1.1) skewX(-5deg); }
+        .insta-link:hover { color: var(--accent); }
 
         footer {
-            padding: 40px 60px; border-top: 1px solid var(--border);
-            display: flex; justify-content: space-between; font-size: 0.7rem;
-            text-transform: uppercase; letter-spacing: 2px; opacity: 0.5;
+            padding: 40px 10%;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            opacity: 0.6;
         }
 
         @media (max-width: 768px) {
-            nav, .grid, footer, .section-label { padding: 20px; }
-            .main-title { font-size: 5rem; }
+            .info-container { grid-template-columns: 1fr; }
+            .hero { padding: 0 5%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="noise"></div>
     <div id="cursor"></div>
 
-    <nav>
-        <div class="logo">PRINCE.T</div>
-        <div style="font-size: 0.7rem; font-family: 'Syncopate';">VERIFIED_GENIUS_2026</div>
-    </nav>
-
     <section class="hero">
-        <span class="hero-sub">DEVELOPER // ARCHITECT // ELITE</span>
-        <h1 class="main-title">BEYOND<br><span style="color: #fff; -webkit-text-stroke: 0;">LIMITS</span></h1>
-        <p style="margin-top: 40px; font-family: 'Space Grotesk'; opacity: 0.6; letter-spacing: 2px;">
-            15-YEAR-OLD FULL-STACK PRODIGY FROM SIKAR, RAJASTHAN
+        <p style="letter-spacing: 5px; color: var(--accent); margin-bottom: 10px;">OFFICIAL PORTFOLIO // 2026</p>
+        <h1>PRINCE<br><span class="red-text">TAILOR</span></h1>
+        <p style="max-width: 600px; margin-top: 20px; font-size: 1.2rem; opacity: 0.7;">
+            15-Year-Old Full-Stack Engineer from Sikar, Rajasthan. Specialized in creating high-performance digital ecosystems.
         </p>
     </section>
 
-    <div class="section-label">01 // GLOBAL_CERTIFICATIONS</div>
-    <section class="grid">
-        <div class="card">
-            <h4>SECURITY & CLOUD</h4>
-            <p>Certified Solutions Architect</p>
-            <div class="provider">ISSUED BY // AMAZON (AWS)</div>
+    <h2 class="section-title">PROFESSIONAL CERTIFICATIONS</h2>
+    
+    <section class="cert-grid">
+        <div class="cert-card">
+            <span class="brand-name google">GOOGLE</span>
+            <p class="cert-title">Advanced Software Engineering</p>
+            <span class="verify-tag">✓ Verified Expert</span>
         </div>
-        <div class="card">
-            <h4>ADVANCED AI</h4>
-            <p>Machine Learning Specialist</p>
-            <div class="provider">ISSUED BY // GOOGLE</div>
+
+        <div class="cert-card">
+            <span class="brand-name microsoft">MICROSOFT</span>
+            <p class="cert-title">Full-Stack Cloud Architect</p>
+            <span class="verify-tag">✓ Verified Expert</span>
         </div>
-        <div class="card">
-            <h4>SYSTEM ARCHITECTURE</h4>
-            <p>Enterprise Software Dev</p>
-            <div class="provider">ISSUED BY // MICROSOFT</div>
+
+        <div class="cert-card">
+            <span class="brand-name amazon">AMAZON</span>
+            <p class="cert-title">AWS Infrastructure Specialist</p>
+            <span class="verify-tag">✓ Verified Expert</span>
         </div>
-        <div class="card">
-            <h4>NETWORK SECURITY</h4>
-            <p>Full-Stack Web Security</p>
-            <div class="provider">ISSUED BY // JIO PLATFORMS</div>
+
+        <div class="cert-card">
+            <span class="brand-name jio">JIO PLATFORMS</span>
+            <p class="cert-title">Cyber Security & Networks</p>
+            <span class="verify-tag">✓ Verified Expert</span>
         </div>
     </section>
 
-    <div class="section-label">02 // BIOMETRICS</div>
-    <section class="grid">
-        <div class="card">
-            <h4>IDENTITY</h4>
-            <p>Prince Tailor</p>
-            <div class="provider">DOB: 28/12/2010</div>
+    <h2 class="section-title">IDENTITY DATA</h2>
+    <section class="info-container">
+        <div class="info-box">
+            <h3>BIOGRAPHY</h3>
+            <p>Name: Prince Tailor<br>
+               Age: 15 Years<br>
+               DOB: 28/12/2010<br>
+               Location: Sikar, Rajasthan, India</p>
         </div>
-        <div class="card">
-            <h4>LOCATION</h4>
-            <p>Sikar, Rajasthan</p>
-            <div class="provider">ZONE: 332001</div>
-        </div>
-        <div class="card">
-            <h4>MISSION</h4>
-            <p>Redefining Reality Through Code</p>
-            <div class="provider">STATUS: UNSTOPPABLE</div>
+        <div class="info-box">
+            <h3>THE MISSION</h3>
+            <p>बिल्कुल सटीक और पावरफुल कोड लिखना ही मेरा लक्ष्य है। क्लास 10वीं के साथ-साथ मैं दुनिया के बेहतरीन सिस्टम्स को मात देने वाली इंजीनियरिंग कर रहा हूँ।</p>
         </div>
     </section>
 
-    <section class="contact-box">
-        <span style="font-family: 'Syncopate'; font-size: 0.7rem; color: var(--accent);">STAY CONNECTED</span>
-        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-btn">INSTAGRAM</a>
+    <section class="cta">
+        <p style="margin-bottom: 20px; letter-spacing: 3px;">INITIALIZE CONNECTION</p>
+        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="insta-link">INSTAGRAM →</a>
     </section>
 
     <footer>
-        <div>© 2026 PRINCE TAILOR CORE</div>
-        <div>DESIGNED FOR THE 1%</div>
+        <span>© 2026 PRINCE TAILOR</span>
+        <span>SIKAR // RAJASTHAN // INDIA</span>
     </footer>
 
     <script>
-        // CUSTOM SMOOTH CURSOR
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
             gsap.to(cursor, {
-                x: e.clientX - 6,
-                y: e.clientY - 6,
-                duration: 0.15,
-                ease: "power2.out"
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
             });
         });
 
-        // REVEAL ANIMATIONS
-        gsap.from(".main-title", {
-            opacity: 0, y: 100, duration: 2, ease: "expo.out"
-        });
-
-        gsap.from(".card", {
-            scrollTrigger: {
-                trigger: ".grid",
-                start: "top 80%"
-            },
-            opacity: 0,
+        // Simple Reveal
+        gsap.from(".cert-card", {
+            scrollTrigger: ".cert-grid",
             y: 50,
-            stagger: 0.1,
-            duration: 1,
-            ease: "power3.out"
-        });
-
-        // INTERACTIVE HOVER
-        const links = document.querySelectorAll('.insta-btn, .card');
-        links.forEach(link => {
-            link.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 5, backgroundColor: "rgba(255,0,60,0.2)", border: "1px solid #ff003c" }));
-            link.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, backgroundColor: "#ff003c", border: "none" }));
+            opacity: 0,
+            stagger: 0.2,
+            duration: 1
         });
     </script>
 </body>
