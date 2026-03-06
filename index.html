@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRINCE TAILOR | PRO EDITION</title>
+    <title>PRINCE TAILOR | TECH ARCHITECT</title>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Poppins:wght@300;900&family=Bebas+Neue&display=swap');
 
@@ -12,113 +13,160 @@
         body { 
             color: #fff; 
             font-family: 'Poppins', sans-serif;
-            background: #050505;
+            background: #000;
             overflow-x: hidden;
         }
 
-        /* SLOW & GENTLE BACKGROUND - LOW RAM USAGE */
-        .bg-canvas {
+        /* 10 SECOND SMOOTH DYNAMIC TECH BACKGROUND */
+        .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(-45deg, #0f0c29, #1a1a2e, #0d0d2b, #16213e);
+            background: linear-gradient(-45deg, #050505, #1a0c3a, #001f3f, #0d0d0d, #16213e, #0f0c29);
             background-size: 400% 400%;
-            animation: gradientShift 30s ease-in-out infinite; /* Very Slow - 30 Seconds */
+            animation: techGradient 10s ease-in-out infinite; 
             z-index: -2;
         }
 
-        @keyframes gradientShift {
+        @keyframes techGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        section { padding: 80px 8%; position: relative; }
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 25px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-logo { font-family: 'Syncopate'; font-size: 0.9rem; color: #00f2ff; letter-spacing: 3px; }
 
-        .tag { font-family: 'Syncopate'; font-size: 0.6rem; color: #00f2ff; letter-spacing: 4px; margin-bottom: 10px; opacity: 0.8; }
-        .section-title { font-family: 'Bebas Neue'; font-size: 3.5rem; margin-bottom: 30px; letter-spacing: 2px; }
+        section { padding: 100px 8%; position: relative; }
 
-        /* HERO */
-        .hero { height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .hero h1 { font-family: 'Bebas Neue'; font-size: clamp(4rem, 12vw, 9rem); line-height: 0.9; color: #fff; }
+        .tag { font-family: 'Syncopate'; font-size: 0.65rem; color: #00f2ff; letter-spacing: 5px; margin-bottom: 15px; }
+        .section-title { font-family: 'Bebas Neue'; font-size: 4.5rem; margin-bottom: 40px; line-height: 1; color: #fff; }
+
+        /* MEGA HERO */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero h1 { font-family: 'Bebas Neue'; font-size: clamp(4rem, 18vw, 11rem); line-height: 0.85; }
         
-        /* 20+ BRANDS - OPTIMIZED GRID */
-        .brand-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 15px; width: 100%; max-width: 900px;
+        /* 40+ PURE TECH BRANDS GRID */
+        .tech-grid {
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px; width: 100%;
         }
-        @media (min-width: 768px) { .brand-grid { grid-template-columns: repeat(8, 1fr); } }
+        @media (min-width: 900px) { .tech-grid { grid-template-columns: repeat(10, 1fr); } }
 
-        .brand-item {
-            background: rgba(255,255,255,0.03); padding: 10px; border-radius: 12px;
-            display: flex; flex-direction: column; align-items: center; transition: 0.3s;
+        .tech-item {
+            background: rgba(255,255,255,0.03); 
+            padding: 15px; 
+            border-radius: 8px;
+            display: flex; justify-content: center; align-items: center;
+            transition: 0.3s; height: 65px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        .brand-item img { width: 30px; height: 30px; object-fit: contain; filter: brightness(1.5); }
-        .brand-item span { font-size: 0.4rem; font-family: 'Syncopate'; margin-top: 5px; opacity: 0.5; }
-
-        /* SKILLS */
-        .skill-row { margin-bottom: 20px; }
-        .bar-bg { background: rgba(255,255,255,0.05); height: 6px; border-radius: 10px; margin-top: 8px; }
-        .bar-fill { height: 100%; background: #00f2ff; border-radius: 10px; }
+        .tech-item:hover { 
+            background: rgba(0, 242, 255, 0.1); 
+            border-color: #00f2ff;
+            transform: translateY(-5px);
+        }
+        .tech-item img { max-width: 100%; max-height: 30px; filter: grayscale(1) brightness(2); transition: 0.3s; }
+        .tech-item:hover img { filter: grayscale(0) brightness(1); }
 
         /* DATA BOX */
-        .data-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; }
-        .data-line { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
-        .data-line .val { color: #00f2ff; font-weight: 900; }
+        .info-card { background: rgba(255,255,255,0.02); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); max-width: 700px; }
+        .info-line { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .info-line .val { font-weight: 900; color: #00f2ff; font-family: 'Bebas Neue'; font-size: 1.5rem; }
 
-        .btn {
-            display: inline-block; padding: 18px 45px; background: #fff; color: #000;
-            text-decoration: none; font-family: 'Syncopate'; font-size: 0.7rem; font-weight: 900;
-            border-radius: 8px; margin-top: 30px; transition: 0.3s;
+        .btn-elite {
+            display: inline-block; padding: 22px 60px; background: #fff; color: #000;
+            text-decoration: none; font-family: 'Syncopate'; font-size: 0.8rem; font-weight: 900;
+            border-radius: 4px; transition: 0.4s; margin-top: 30px;
         }
+        .btn-elite:hover { background: #00f2ff; box-shadow: 0 0 40px rgba(0, 242, 255, 0.5); transform: scale(1.05); }
+
     </style>
 </head>
 <body>
 
-    <div class="bg-canvas"></div>
+    <div class="bg-fixed"></div>
+
+    <nav>
+        <div class="nav-logo">PRINCE TAILOR // CORE</div>
+        <div style="font-size: 0.5rem; font-family: 'Syncopate'; opacity: 0.5;">VERSION 4.0.26</div>
+    </nav>
 
     <section class="hero">
-        <div class="tag">TOP TIER DEVELOPER</div>
-        <h1>PRINCE<br>TAILOR</h1>
-        <p style="letter-spacing: 5px; margin-top: 15px; opacity: 0.5; font-size: 0.8rem;">SIKAR // RAJASTHAN // INDIA</p>
-        <a href="#about" class="btn">VIEW DETAILS</a>
+        <div class="tag">SYSTEM ARCHITECT</div>
+        <h1>THE TECH<br>PRODIGY</h1>
+        <p style="letter-spacing: 12px; margin-top: 25px; opacity: 0.4; font-size: 0.7rem;">SIKAR • RAJASTHAN • INDIA</p>
+        <a href="#tech" class="btn-elite">VIEW TECH STACK</a>
     </section>
 
-    <section id="brands">
-        <div class="tag">NETWORK</div>
-        <h2 class="section-title">GLOBAL TECH STACK</h2>
-        <div class="brand-grid">
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"><span>GOOGLE</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="filter:invert(1)"><span>APPLE</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"><span>MSFT</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg"><span>NVIDIA</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"><span>AMZN</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Gemini_logo.svg/1024px-Gemini_logo.svg.png"><span>GEMINI</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"><span>NFLX</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg"><span>META</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Reliance_Jio_Logo.svg"><span>JIO</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Intel_logo_%282020%29.svg"><span>INTEL</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/AMD_Logo.svg"><span>AMD</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"><span>YT</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style="filter:invert(1)"><span>GIT</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/36/SpaceX_Logo_Black.svg" style="filter:invert(1)"><span>SPACEX</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"><span>SMSNG</span></div>
-            <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"><span>IBM</span></div>
+    <section id="tech">
+        <div class="tag">INFRASTRUCTURE</div>
+        <h2 class="section-title">40+ TECH LEADERS</h2>
+        <div class="tech-grid">
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="filter:invert(1)"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Intel_logo_%282020%29.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/AMD_Logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/HP_logo_2012.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Dell_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Lenovo_logo_2015.svg"></div>
+            
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Gemini_logo.svg/1024px-Gemini_logo.svg.png"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Reliance_Jio_Logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg" style="filter:invert(1)"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Systems_logo_and_wordmark.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/1024px-OpenAI_Logo.svg.png" style="filter:invert(1)"></div>
+
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Qualcomm_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/36/SpaceX_Logo_Black.svg" style="filter:invert(1)"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style="filter:invert(1)"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Spotify_logo_with_text.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Cloudflare_Logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Cisco_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Asus_Logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Acer_2011.svg"></div>
+
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Western_Digital_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Seagate_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/LG_Logo_2023.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Panasonic_logo_%28Blue%29.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Logitech_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Razer_Snake_Logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/OnePlus_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Xiaomi_logo_%282021-present%29.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Vivo_mobile_logo.svg"></div>
+            <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/1/13/OPPO_Logo_2019.svg"></div>
         </div>
     </section>
 
-    <section id="about">
-        <div class="tag">IDENTITY</div>
-        <h2 class="section-title">REPORT</h2>
-        <div class="data-box">
-            <div class="data-line"><span>NAME</span><span class="val">PRINCE TAILOR</span></div>
-            <div class="data-line"><span>EXPERIENCE</span><span class="val">15 YEARS</span></div>
-            <div class="data-line"><span>BORN</span><span class="val">28/12/2010</span></div>
-            <div class="data-line"><span>ORIGIN</span><span class="val">SIKAR, RJ</span></div>
+    <section>
+        <div class="tag">PERSONAL DATA</div>
+        <h2 class="section-title">CORE PROFILE</h2>
+        <div class="info-card">
+            <div class="info-line"><span>IDENTITY</span><span class="val">PRINCE TAILOR</span></div>
+            <div class="info-line"><span>CHRONO</span><span class="val">15 YEARS</span></div>
+            <div class="info-line"><span>ORIGIN</span><span class="val">28 DEC 2010</span></div>
+            <div class="info-line"><span>LOCATION</span><span class="val">SIKAR, RJ</span></div>
         </div>
-        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="btn">INSTAGRAM</a>
+        <a href="https://www.instagram.com/official_prince_tailor_9691?igsh=MWN6aW1vejNsODB3Mw==" class="btn-elite">INSTAGRAM</a>
     </section>
 
-    <footer style="padding: 40px; text-align: center; opacity: 0.3; font-size: 0.6rem; font-family: 'Syncopate';">
-        © 2026 PRINCE TAILOR CORE // OPTIMIZED FOR PERFORMANCE
+    <footer style="padding: 50px; text-align: center; opacity: 0.2; font-family: 'Syncopate'; font-size: 0.5rem;">
+        © 2026 PRINCE TAILOR GLOBAL // OPTIMIZED FOR ELITE PERFORMANCE
     </footer>
 
 </body>
